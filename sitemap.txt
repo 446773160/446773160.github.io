@@ -1,5 +1,5 @@
-http://example.com/2022/10/15/Java8%E6%A6%82%E8%BF%B0/
 http://example.com/2022/10/15/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/
+http://example.com/2022/10/15/Java8%E6%A6%82%E8%BF%B0/
 http://example.com/2022/10/15/Linux%E5%9F%BA%E7%A1%80/
 http://example.com/2022/10/15/JavaIO/
 http://example.com/link/index.html
