@@ -1,3 +1,4 @@
+http://example.com/2022/10/19/QUIC%E5%8D%8F%E8%AE%AE/
 http://example.com/2022/10/18/SpringMVC/
 http://example.com/2022/10/18/SpringBoot%E4%BA%8B%E4%BB%B6/
 http://example.com/2022/10/15/Redis%E5%9F%BA%E7%A1%80%E7%AF%87/
