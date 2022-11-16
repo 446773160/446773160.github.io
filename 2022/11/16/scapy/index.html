@@ -1,0 +1,550 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Scapy | 山不让尘，川不辞盈</title><meta name="author" content="山不让尘，川不辞盈"><meta name="copyright" content="山不让尘，川不辞盈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Scapy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scapy">
+<meta property="og:url" content="http://example.com/2022/11/16/scapy/index.html">
+<meta property="og:site_name" content="山不让尘，川不辞盈">
+<meta property="og:description" content="Scapy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668339555&t=953420e9c4344774da896a7388445605">
+<meta property="article:published_time" content="2022-11-16T08:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-16T08:23:33.961Z">
+<meta property="article:author" content="山不让尘，川不辞盈">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668339555&t=953420e9c4344774da896a7388445605"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/11/16/scapy/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 山不让尘，川不辞盈","link":"链接: ","source":"来源: 山不让尘，川不辞盈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Scapy',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-16 16:23:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="山不让尘，川不辞盈" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14071825039%2F641&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668341762&amp;t=8f1764bb17a8a475a7658fd817bf1965" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">山不让尘，川不辞盈</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Scapy</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-16T08:00:00.000Z" title="发表于 2022-11-16 16:00:00">2022-11-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-16T08:23:33.961Z" title="更新于 2022-11-16 16:23:33">2022-11-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Scapy"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="下载和安装Scapy"><a href="#下载和安装Scapy" class="headerlink" title="下载和安装Scapy"></a>下载和安装Scapy</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install scapy #Anconada下载</span><br><span class="line">pip install scapy #pip下载</span><br></pre></td></tr></table></figure>
+
+<h1 id="开始使用Scapy"><a href="#开始使用Scapy" class="headerlink" title="开始使用Scapy"></a>开始使用Scapy</h1><p>在window是在打开cmd命令并且确保自己有管理员权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scapy</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/446773160/Picbed/blob/main/blog_images20221103082635.png?raw=true" alt="blog_images20221103082635.png"></p>
+<p>scapy每一个协议都是一个类，所以当我们调用这些协议的时候我们必须对协议进行实例化才可以进行调用。</p>
+<p>执行explore()命令查看scapy里面的类</p>
+<p><img src="https://github.com/446773160/Picbed/blob/main/blog_images331017acd6aad38d4c713ec7a94001a.jpg?raw=true" alt="blog_images331017acd6aad38d4c713ec7a94001a.jpg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>explore()</span><br><span class="line">Packets contained <span class="keyword">in</span> scapy.layers.inet:</span><br><span class="line">Class                     |Name</span><br><span class="line">--------------------------|-------------------------------------------</span><br><span class="line">ICMP                      |ICMP</span><br><span class="line">ICMPerror                 |ICMP <span class="keyword">in</span> ICMP</span><br><span class="line">IP                        |IP</span><br><span class="line">IPOption                  |IP Option</span><br><span class="line">IPOption_Address_Extension|IP Option Address Extension</span><br><span class="line">IPOption_EOL              |IP Option End of Options <span class="type">List</span></span><br><span class="line">IPOption_LSRR             |IP Option Loose Source <span class="keyword">and</span> Record Route</span><br><span class="line">IPOption_MTU_Probe        |IP Option MTU Probe</span><br><span class="line">IPOption_MTU_Reply        |IP Option MTU Reply</span><br><span class="line">IPOption_NOP              |IP Option No Operation</span><br><span class="line">IPOption_RR               |IP Option Record Route</span><br><span class="line">IPOption_Router_Alert     |IP Option Router Alert</span><br><span class="line">IPOption_SDBM             |IP Option Selective Directed Broadcast Mode</span><br><span class="line">IPOption_SSRR             |IP Option Strict Source <span class="keyword">and</span> Record Route</span><br><span class="line">IPOption_Security         |IP Option Security</span><br><span class="line">IPOption_Stream_Id        |IP Option Stream ID</span><br><span class="line">IPOption_Timestamp        |IP Option Timestamp</span><br><span class="line">IPOption_Traceroute       |IP Option Traceroute</span><br><span class="line">IPerror                   |IP <span class="keyword">in</span> ICMP</span><br><span class="line">TCP                       |TCP</span><br><span class="line">TCPerror                  |TCP <span class="keyword">in</span> ICMP</span><br><span class="line">UDP                       |UDP</span><br><span class="line">UDPerror                  |UDP <span class="keyword">in</span> ICMP</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>各个协议默认值</strong></p>
+<p>数据链路层：</p>
+<p>Ether()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dst        : DestMACField                        = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">src        : SourceMACField                      = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line"><span class="built_in">type</span>       : XShortEnumField                     = (<span class="string">&#x27;36864&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>网络层：</p>
+<p>IP()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">version    : BitField  (<span class="number">4</span> bits)                  = (<span class="string">&#x27;4&#x27;</span>)</span><br><span class="line">ihl        : BitField  (<span class="number">4</span> bits)                  = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">tos        : XByteField                          = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line"><span class="built_in">len</span>        : ShortField                          = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line"><span class="built_in">id</span>         : ShortField                          = (<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">flags      : FlagsField                          = (<span class="string">&#x27;&lt;Flag 0 ()&gt;&#x27;</span>)</span><br><span class="line">frag       : BitField  (<span class="number">13</span> bits)                 = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">ttl        : ByteField                           = (<span class="string">&#x27;64&#x27;</span>)</span><br><span class="line">proto      : ByteEnumField                       = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">chksum     : XShortField                         = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">src        : SourceIPField                       = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">dst        : DestIPField                         = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">options    : PacketListField                     = (<span class="string">&#x27;[]&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>ARP()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hwtype     : XShortField                         = (<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">ptype      : XShortEnumField                     = (<span class="string">&#x27;2048&#x27;</span>)</span><br><span class="line">hwlen      : FieldLenField                       = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">plen       : FieldLenField                       = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">op         : ShortEnumField                      = (<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">hwsrc      : MultipleTypeField (SourceMACField, StrFixedLenField) = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">psrc       : MultipleTypeField (SourceIPField, SourceIP6Field, StrFixedLenField) = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">hwdst      : MultipleTypeField (MACField, StrFixedLenField) = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">pdst       : MultipleTypeField (IPField, IP6Field, StrFixedLenField) = (<span class="string">&#x27;None&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>ICMP()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span>       : ByteEnumField                       = (<span class="string">&#x27;8&#x27;</span>)</span><br><span class="line">code       : MultiEnumField (Depends on <span class="number">8</span>)       = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">chksum     : XShortField                         = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line"><span class="built_in">id</span>         : XShortField (Cond)                  = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">seq        : XShortField (Cond)                  = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">ts_ori     : ICMPTimeStampField (Cond)           = (<span class="string">&#x27;22263044&#x27;</span>)</span><br><span class="line">ts_rx      : ICMPTimeStampField (Cond)           = (<span class="string">&#x27;22263044&#x27;</span>)</span><br><span class="line">ts_tx      : ICMPTimeStampField (Cond)           = (<span class="string">&#x27;22263044&#x27;</span>)</span><br><span class="line">gw         : IPField (Cond)                      = (<span class="string">&quot;&#x27;0.0.0.0&#x27;&quot;</span>)</span><br><span class="line">ptr        : ByteField (Cond)                    = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">reserved   : ByteField (Cond)                    = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">length     : ByteField (Cond)                    = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">addr_mask  : IPField (Cond)                      = (<span class="string">&quot;&#x27;0.0.0.0&#x27;&quot;</span>)</span><br><span class="line">nexthopmtu : ShortField (Cond)                   = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">unused     : MultipleTypeField (ShortField, IntField, StrFixedLenField) = (<span class="string">&quot;b&#x27;&#x27;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>传输层：</p>
+<p>TCP()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sport      : ShortEnumField                      = (<span class="string">&#x27;20&#x27;</span>)</span><br><span class="line">dport      : ShortEnumField                      = (<span class="string">&#x27;80&#x27;</span>)</span><br><span class="line">seq        : IntField                            = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">ack        : IntField                            = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">dataofs    : BitField  (<span class="number">4</span> bits)                  = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">reserved   : BitField  (<span class="number">3</span> bits)                  = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">flags      : FlagsField                          = (<span class="string">&#x27;&lt;Flag 2 (S)&gt;&#x27;</span>)</span><br><span class="line">window     : ShortField                          = (<span class="string">&#x27;8192&#x27;</span>)</span><br><span class="line">chksum     : XShortField                         = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">urgptr     : ShortField                          = (<span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">options    : TCPOptionsField                     = (<span class="string">&quot;b&#x27;&#x27;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>UDP()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sport      : ShortEnumField                      = (<span class="string">&#x27;53&#x27;</span>)</span><br><span class="line">dport      : ShortEnumField                      = (<span class="string">&#x27;53&#x27;</span>)</span><br><span class="line"><span class="built_in">len</span>        : ShortField                          = (<span class="string">&#x27;None&#x27;</span>)</span><br><span class="line">chksum     : XShortField                         = (<span class="string">&#x27;None&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>应用层：</p>
+<p>DHCP</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options    : DHCPOptionsField                    = (<span class="string">&quot;b&#x27;&#x27;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>scapy所有函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">IPID_count          : Identify IP <span class="built_in">id</span> values classes <span class="keyword">in</span> a <span class="built_in">list</span> of packets</span><br><span class="line">arpcachepoison      : Poison target<span class="string">&#x27;s cache with (your MAC,victim&#x27;</span>s IP) couple</span><br><span class="line">arping              : Send ARP who-has requests to determine which hosts are up</span><br><span class="line">arpleak             : Exploit ARP leak flaws, like NetBSD-SA2017-<span class="number">002.</span></span><br><span class="line">bind_layers         : Bind <span class="number">2</span> layers on some specific fields<span class="string">&#x27; values.</span></span><br><span class="line"><span class="string">bridge_and_sniff    : Forward traffic between interfaces if1 and if2, sniff and return</span></span><br><span class="line"><span class="string">chexdump            : Build a per byte hexadecimal representation</span></span><br><span class="line"><span class="string">computeNIGroupAddr  : Compute the NI group Address. Can take a FQDN as input parameter</span></span><br><span class="line"><span class="string">corrupt_bits        :</span></span><br><span class="line"><span class="string">corrupt_bytes       :</span></span><br><span class="line"><span class="string">defrag              : defrag(plist) -&gt; ([not fragmented], [defragmented],</span></span><br><span class="line"><span class="string">defragment          : defragment(plist) -&gt; plist defragmented as much as possible</span></span><br><span class="line"><span class="string">dhcp_request        : Send a DHCP discover request and return the answer</span></span><br><span class="line"><span class="string">dyndns_add          : Send a DNS add message to a nameserver for &quot;name&quot; to have a new &quot;rdata&quot;</span></span><br><span class="line"><span class="string">dyndns_del          : Send a DNS delete message to a nameserver for &quot;name&quot;</span></span><br><span class="line"><span class="string">etherleak           : Exploit Etherleak flaw</span></span><br><span class="line"><span class="string">explore             : Function used to discover the Scapy layers and protocols.</span></span><br><span class="line"><span class="string">fletcher16_checkbytes: Calculates the Fletcher-16 checkbytes returned as 2 byte binary-string.</span></span><br><span class="line"><span class="string">fletcher16_checksum : Calculates Fletcher-16 checksum of the given buffer.</span></span><br><span class="line"><span class="string">fragleak            : --</span></span><br><span class="line"><span class="string">fragleak2           : --</span></span><br><span class="line"><span class="string">fragment            : Fragment a big IP datagram</span></span><br><span class="line"><span class="string">fuzz                :</span></span><br><span class="line"><span class="string">getmacbyip          : Return MAC address corresponding to a given IP address</span></span><br><span class="line"><span class="string">getmacbyip6         : Returns the MAC address corresponding to an IPv6 address</span></span><br><span class="line"><span class="string">hexdiff             :</span></span><br><span class="line"><span class="string">hexdump             : Build a tcpdump like hexadecimal view</span></span><br><span class="line"><span class="string">hexedit             : Run hexedit on a list of packets, then return the edited packets.</span></span><br><span class="line"><span class="string">hexstr              : Build a fancy tcpdump like hex from bytes.</span></span><br><span class="line"><span class="string">import_hexcap       : Imports a tcpdump like hexadecimal view</span></span><br><span class="line"><span class="string">is_promisc          : Try to guess if target is in Promisc mode. The target is provided by its ip.</span></span><br><span class="line"><span class="string">linehexdump         : Build an equivalent view of hexdump() on a single line</span></span><br><span class="line"><span class="string">ls                  : List  available layers, or infos on a given layer class or name.</span></span><br><span class="line"><span class="string">neighsol            : Sends and receive an ICMPv6 Neighbor Solicitation message</span></span><br><span class="line"><span class="string">overlap_frag        : Build overlapping fragments to bypass NIPS</span></span><br><span class="line"><span class="string">promiscping         : Send ARP who-has requests to determine which hosts are in promiscuous mode</span></span><br><span class="line"><span class="string">rdpcap              : Read a pcap or pcapng file and return a packet list</span></span><br><span class="line"><span class="string">report_ports        : portscan a target and output a LaTeX table</span></span><br><span class="line"><span class="string">restart             : Restarts scapy</span></span><br><span class="line"><span class="string">rfc                 :</span></span><br><span class="line"><span class="string">send                :</span></span><br><span class="line"><span class="string">sendp               :</span></span><br><span class="line"><span class="string">sendpfast           : Send packets at layer 2 using tcpreplay for performance</span></span><br><span class="line"><span class="string">sniff               :</span></span><br><span class="line"><span class="string">split_layers        : Split 2 layers previously bound.</span></span><br><span class="line"><span class="string">sr                  :</span></span><br><span class="line"><span class="string">sr1                 :</span></span><br><span class="line"><span class="string">sr1flood            : Flood and receive packets at layer 3 and return only the first answer</span></span><br><span class="line"><span class="string">srbt                : send and receive using a bluetooth socket</span></span><br><span class="line"><span class="string">srbt1               : send and receive 1 packet using a bluetooth socket</span></span><br><span class="line"><span class="string">srflood             : Flood and receive packets at layer 3</span></span><br><span class="line"><span class="string">srloop              :</span></span><br><span class="line"><span class="string">srp                 :</span></span><br><span class="line"><span class="string">srp1                :</span></span><br><span class="line"><span class="string">srp1flood           : Flood and receive packets at layer 2 and return only the first answer</span></span><br><span class="line"><span class="string">srpflood            : Flood and receive packets at layer 2</span></span><br><span class="line"><span class="string">srploop             :</span></span><br><span class="line"><span class="string">tcpdump             : Run tcpdump or tshark on a list of packets.</span></span><br><span class="line"><span class="string">tdecode             :</span></span><br><span class="line"><span class="string">traceroute          : Instant TCP traceroute</span></span><br><span class="line"><span class="string">traceroute6         : Instant TCP traceroute using IPv6</span></span><br><span class="line"><span class="string">traceroute_map      : Util function to call traceroute on multiple targets, then</span></span><br><span class="line"><span class="string">tshark              : Sniff packets and print them calling pkt.summary().</span></span><br><span class="line"><span class="string">wireshark           :</span></span><br><span class="line"><span class="string">wrpcap              : Write a list of packets to a pcap file</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p>构建数据包并且使用它，scapy采用分层的方式去构造数据包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#构建数据链路层的包</span></span><br><span class="line">ether=Ether()</span><br><span class="line"><span class="comment">#构建ip()数据包</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ip=IP()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ip</span><br><span class="line">&lt;IP  |&gt;</span><br><span class="line"><span class="comment">#构建Ether/IP/TCP</span></span><br><span class="line">pkt =Ether()/IP()/TCP()</span><br><span class="line"><span class="comment">#构建HTTP的包</span></span><br><span class="line">pkt = IP()/TCP()/<span class="string">&quot;GET HTTP/1.0\r\n\r\n&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ip.show()</span><br><span class="line"><span class="comment">###[ IP ]### 以下是IP类属性的默认值</span></span><br><span class="line">  version   = <span class="number">4</span></span><br><span class="line">  ihl       = <span class="literal">None</span></span><br><span class="line">  tos       = <span class="number">0x0</span> <span class="comment">#8位服务类型TOS</span></span><br><span class="line">  <span class="built_in">len</span>       = <span class="literal">None</span> <span class="comment">#16位总长度（字节）</span></span><br><span class="line">  <span class="built_in">id</span>        = <span class="number">1</span></span><br><span class="line">  flags     = </span><br><span class="line">  frag      = <span class="number">0</span></span><br><span class="line">  ttl       = <span class="number">64</span>  <span class="comment">#ttl是转发路由的数量，每转发一次ttl减去1如果到0则会发送ICMP报告超时</span></span><br><span class="line">  proto     = ip  <span class="comment">#8位协议 (TCP, UDP 或其他)</span></span><br><span class="line">  chksum    = <span class="literal">None</span> <span class="comment">#16位IP首部校验和</span></span><br><span class="line">  src       = <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>  <span class="comment">#源地址  127.0.0.1为本机地址</span></span><br><span class="line">  dst       = <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>  <span class="comment">#目的地址</span></span><br><span class="line">  \options   \</span><br></pre></td></tr></table></figure>
+
+<p>堆叠层</p>
+<p>这个 <code>/</code> 运算符用作两层之间的合成运算符。这样做时，下层可以根据上层重载一个或多个默认字段。（您仍然可以提供所需的值）。字符串可以用作原始层。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>ip/TCP()</span><br><span class="line">&lt;IP  frag=<span class="number">0</span> proto=tcp |&lt;TCP  |&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Ether()/IP()/TCP()</span><br><span class="line">&lt;Ether  <span class="built_in">type</span>=IPv4 |&lt;IP  frag=<span class="number">0</span> proto=tcp |&lt;TCP  |&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>IP()/TCP()/<span class="string">&quot;GET / HTTP/1.0\n\r\n&quot;</span></span><br><span class="line">&lt;IP  frag=<span class="number">0</span> proto=tcp |&lt;TCP  |&lt;Raw  load=<span class="string">&#x27;GET / HTTP/1.0\n\r\n&#x27;</span> |&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Ether()/IP()/IP()/UDP()</span><br><span class="line">&lt;Ether  <span class="built_in">type</span>=IPv4 |&lt;IP  frag=<span class="number">0</span> proto=<span class="number">4</span> |&lt;IP  frag=<span class="number">0</span> proto=udp |&lt;UDP  |&gt;&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>IP(proto=<span class="number">55</span>)/TCP()</span><br><span class="line">&lt;IP  frag=<span class="number">0</span> proto=<span class="number">55</span> |&lt;TCP  |&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解析数据包"><a href="#解析数据包" class="headerlink" title="解析数据包"></a>解析数据包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>raw(IP()) <span class="comment">#字节方式显示数据包</span></span><br><span class="line"><span class="string">b&#x27;E\x00\x00\x14\x00\x01\x00\x00@\x00|\xe7\x7f\x00\x00\x01\x7f\x00\x00\x01&#x27;</span> <span class="comment">#八进制展示</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>IP(_) <span class="comment">#转换</span></span><br><span class="line">&lt;IP  version=<span class="number">4</span> ihl=<span class="number">5</span> tos=<span class="number">0x0</span> <span class="built_in">len</span>=<span class="number">20</span> <span class="built_in">id</span>=<span class="number">1</span> flags= frag=<span class="number">0</span> ttl=<span class="number">64</span> proto=ip chksum=<span class="number">0x7ce7</span> src=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> dst=<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> |&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ip=Ether()/IP(dst=<span class="string">&quot;www.slashdot.org&quot;</span>)/TCP()/<span class="string">&quot;GET /index.html HTTP/1.0 \n\n&quot;</span> <span class="comment">#Ether是以太网协议</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hexdump(ip) <span class="comment">#字节转换成十六进制</span></span><br><span class="line"><span class="number">0000</span>  <span class="number">30</span> FC <span class="number">68</span> 4F 6A <span class="number">12</span> 9C 2D CD 01 <span class="number">88</span> 7E 08 <span class="number">00</span> <span class="number">45</span> <span class="number">00</span>  <span class="number">0.</span>hOj..-...~..E.</span><br><span class="line"><span class="number">00</span>10  <span class="number">00</span> <span class="number">43</span> <span class="number">00</span> 01 <span class="number">00</span> <span class="number">00</span> <span class="number">40</span> 06 <span class="number">33</span> 3B C0 A8 01 <span class="number">69</span> <span class="number">68</span> <span class="number">12</span>  .C....@<span class="number">.3</span>;...ih.</span><br><span class="line">0020  1D <span class="number">56</span> <span class="number">00</span> <span class="number">14</span> <span class="number">00</span> <span class="number">50</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">50</span> 02  .V...P........P.</span><br><span class="line">0030  <span class="number">20</span> <span class="number">00</span> <span class="number">76</span> <span class="number">38</span> <span class="number">00</span> <span class="number">00</span> <span class="number">47</span> <span class="number">45</span> <span class="number">54</span> <span class="number">20</span> 2F <span class="number">69</span> 6E <span class="number">64</span> <span class="number">65</span> <span class="number">78</span>   .v8..GET /index</span><br><span class="line">0040  2E <span class="number">68</span> <span class="number">74</span> 6D 6C <span class="number">20</span> <span class="number">48</span> <span class="number">54</span> <span class="number">54</span> <span class="number">50</span> 2F <span class="number">31</span> 2E <span class="number">30</span> <span class="number">20</span> 0A  .html HTTP/<span class="number">1.0</span> .</span><br><span class="line">0050  0A                                               .</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=raw(ip) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line"><span class="string">b&#x27;0\xfchOj\x12\x9c-\xcd\x01\x88~\x08\x00E\x00\x00C\x00\x01\x00\x00@\x063;\xc0\xa8\x01ih\x12\x1dV\x00\x14\x00P\x00\x00\x00\x00\x00\x00\x00\x00P\x02 \x00v8\x00\x00GET /index.html HTTP/1.0 \n\n&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c=Ether(b) <span class="comment">#转换成Ether协议格式</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">&lt;Ether  dst=<span class="number">30</span>:fc:<span class="number">68</span>:4f:6a:<span class="number">12</span> src=9c:2d:cd:01:<span class="number">88</span>:7e <span class="built_in">type</span>=IPv4 |&lt;IP  version=<span class="number">4</span> ihl=<span class="number">5</span> tos=<span class="number">0x0</span> <span class="built_in">len</span>=<span class="number">67</span> <span class="built_in">id</span>=<span class="number">1</span> flags= frag=<span class="number">0</span> ttl=<span class="number">64</span> proto=tcp chksum=<span class="number">0x333b</span> src</span><br><span class="line">=<span class="number">192.168</span><span class="number">.1</span><span class="number">.105</span> dst=<span class="number">104.18</span><span class="number">.29</span><span class="number">.86</span> |&lt;TCP  sport=ftp_data dport=http seq=<span class="number">0</span> ack=<span class="number">0</span> dataofs=<span class="number">5</span> reserved=<span class="number">0</span> flags=S window=<span class="number">8192</span> chksum=<span class="number">0x7638</span> urgptr=<span class="number">0</span> |&lt;Raw  load=<span class="string">&#x27;GET /index.html HTTP/1.0 \n\n&#x27;</span> |&gt;&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.hide_defaults()<span class="comment">#隐藏默认值</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">&lt;Ether  dst=<span class="number">30</span>:fc:<span class="number">68</span>:4f:6a:<span class="number">12</span> src=9c:2d:cd:01:<span class="number">88</span>:7e <span class="built_in">type</span>=IPv4 |&lt;IP  ihl=<span class="number">5</span> <span class="built_in">len</span>=<span class="number">67</span> frag=<span class="number">0</span> proto=tcp chksum=<span class="number">0x333b</span> src=<span class="number">192.168</span><span class="number">.1</span><span class="number">.105</span> dst=<span class="number">104.18</span><span class="number">.29</span><span class="number">.86</span> |&lt;TCP</span><br><span class="line">  dataofs=<span class="number">5</span> chksum=<span class="number">0x7638</span> |&lt;Raw  load=<span class="string">&#x27;GET /index.html HTTP/1.0 \n\n&#x27;</span> |&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取PCAP文件"><a href="#读取PCAP文件" class="headerlink" title="读取PCAP文件"></a>读取PCAP文件</h2><p>您可以从 pcap 文件中读取数据包并将它们写入 pcap 文件。pcap文件是抓包获取到的文件可以通过scapy进行解析</p>
+<p><img src="https://github.com/446773160/Picbed/blob/main/blog_images20221103104931.png?raw=true" alt="blog_images20221103104931.png"></p>
+<p>wireshark对应的是 </p>
+<ul>
+<li>Frame：物理层</li>
+<li>Ethernet：数据链路层</li>
+<li>Internet：网络层Internet Control Message Protocol</li>
+<li>Transmission:传输层</li>
+<li>Hypertext Transfer Protocol ：应用层</li>
+</ul>
+<p>wireshark能获取HTTP，也能获取HTTPS，但是不能解密HTTPS，所以wireshark看不懂HTTPS中的内容，总结，如果是处理HTTP,HTTPS 还是用Fiddler, 其他协议比如TCP,UDP 就用wireshark.HTTPS可以利用scapy进行解析</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dpkt = sniff(iface = <span class="string">&quot;wlan&quot;</span>,count = <span class="number">10</span>)</span><br><span class="line">wrpcap(<span class="string">&quot;mypack.pcap&quot;</span>,dpkt) <span class="comment">#保存pcap文件 pcap文件可以用wireshark打开，wireshark抓取的包保存为.pcap文件也可以被scapy解析</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a=rdpcap(<span class="string">&quot;mypack.pcap&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br></pre></td></tr></table></figure>
+
+<h2 id="图像转存-PDF，PS"><a href="#图像转存-PDF，PS" class="headerlink" title="图像转存(PDF，PS)"></a>图像转存(PDF，PS)</h2><p>如果您安装了 PyX，您可以制作一个数据包或数据包列表的图形 PostScript/PDF 转储（请参见下面丑陋的 PNG 图像。PostScript/PDF 的质量要好得多……）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">423</span>].pdfdump(layer_shift=<span class="number">1</span>)</span><br><span class="line">a[<span class="number">423</span>].psdump(<span class="string">&quot;/tmp/isakmp_pkt.eps&quot;</span>,layer_shift=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://scapy.readthedocs.io/en/latest/_images/isakmp_dump.png" alt="_images/isakmp_dump.png"></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>raw(pkt)</td>
+<td>以字节的方式来显示数据包</td>
+</tr>
+<tr>
+<td>hexdump(pkt)</td>
+<td>把数据包（八进制）进行十六进制转储</td>
+</tr>
+<tr>
+<td>ls(包)</td>
+<td>有字段值的列表</td>
+</tr>
+<tr>
+<td>pkt.summary()</td>
+<td>以不超过一行的摘要来简单描述数据包</td>
+</tr>
+<tr>
+<td>pkt.show()</td>
+<td>多行数据展示数据包的信息</td>
+</tr>
+<tr>
+<td>pkt.show2()</td>
+<td>与 show 相同，但在组装的数据包上（例如，计算校验和）</td>
+</tr>
+<tr>
+<td>pkt.sprintf()</td>
+<td>用数据包的字段值填充格式字符串</td>
+</tr>
+<tr>
+<td>pkt.decode_payload_as()</td>
+<td>改变有效载荷的解码方式</td>
+</tr>
+<tr>
+<td>pkt.psdump()</td>
+<td>绘制带有解释性剖析的 PostScript 图表</td>
+</tr>
+<tr>
+<td>pkt.pdfdump()</td>
+<td>绘制带有解释性剖析的 PDF</td>
+</tr>
+<tr>
+<td>pkt.command()</td>
+<td>返回一个可以生成数据包的 Scapy 命令</td>
+</tr>
+</tbody></table>
+<h2 id="生成数据包集"><a href="#生成数据包集" class="headerlink" title="生成数据包集"></a>生成数据包集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a=IP(dst=<span class="string">&quot;www.slashdot.org/30&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">&lt;IP  dst=Net(<span class="string">&quot;www.slashdot.org/30&quot;</span>) |&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[p <span class="keyword">for</span> p <span class="keyword">in</span> a] <span class="comment">#iPV4是32位地址,子网掩码是30位，主机号有两位，所以有四个数据包</span></span><br><span class="line">[&lt;IP  dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.84</span> |&gt;,</span><br><span class="line"> &lt;IP  dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.85</span> |&gt;,</span><br><span class="line"> &lt;IP  dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.86</span> |&gt;,</span><br><span class="line"> &lt;IP  dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.87</span> |&gt;]</span><br><span class="line"><span class="comment">#----------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=IP(ttl=[<span class="number">1</span>,<span class="number">2</span>,(<span class="number">5</span>,<span class="number">9</span>)])<span class="comment">#左闭右闭</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">&lt;IP  ttl=[<span class="number">1</span>, <span class="number">2</span>, (<span class="number">5</span>, <span class="number">9</span>)] |&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[p <span class="keyword">for</span> p <span class="keyword">in</span> b]</span><br><span class="line">[&lt;IP  ttl=<span class="number">1</span> |&gt;,</span><br><span class="line"> &lt;IP  ttl=<span class="number">2</span> |&gt;,</span><br><span class="line"> &lt;IP  ttl=<span class="number">5</span> |&gt;,</span><br><span class="line"> &lt;IP  ttl=<span class="number">6</span> |&gt;,</span><br><span class="line"> &lt;IP  ttl=<span class="number">7</span> |&gt;,</span><br><span class="line"> &lt;IP  ttl=<span class="number">8</span> |&gt;,</span><br><span class="line"> &lt;IP  ttl=<span class="number">9</span> |&gt;]</span><br><span class="line"><span class="comment">#----------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c=TCP(dport=[<span class="number">80</span>,<span class="number">443</span>]) <span class="comment">#http端口号是80 https的端口号是443</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">&lt;TCP  dport=[<span class="string">&#x27;http&#x27;</span>, <span class="string">&#x27;https&#x27;</span>] |&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[p <span class="keyword">for</span> p <span class="keyword">in</span> c]</span><br><span class="line">[&lt;TCP  dport=http |&gt;,</span><br><span class="line"> &lt;TCP  dport=https |&gt;]</span><br><span class="line"><span class="comment">#----------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[p <span class="keyword">for</span> p <span class="keyword">in</span> a/c]</span><br><span class="line">[&lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.84</span> |&lt;TCP  dport=http |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.84</span> |&lt;TCP  dport=https |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.85</span> |&lt;TCP  dport=http |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.85</span> |&lt;TCP  dport=https |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.86</span> |&lt;TCP  dport=http |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.86</span> |&lt;TCP  dport=https |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.87</span> |&lt;TCP  dport=http |&gt;&gt;,</span><br><span class="line"> &lt;IP  frag=<span class="number">0</span> proto=tcp dst=<span class="number">104.18</span><span class="number">.28</span><span class="number">.87</span> |&lt;TCP  dport=https |&gt;&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>ip地址和http组合：ip地址有四个，http有两个，组合有八个</p>
+<p>某些操作（例如从数据包构建字符串）无法对一组数据包起作用。在这些情况下，如果您忘记展开一组数据包，则只有您忘记生成的列表的第一个元素将用于组装数据包。另一方面，可以将数据包集合移动到PacketList对象中，该对象提供对数据包列表的一些操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>p=PacketList([p <span class="keyword">for</span> p <span class="keyword">in</span> a/c])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p</span><br><span class="line">&lt;PacketList: TCP:<span class="number">8</span> UDP:<span class="number">0</span> ICMP:<span class="number">0</span> Other:<span class="number">0</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>summary()</td>
+<td>显示每个数据包的摘要列表</td>
+</tr>
+<tr>
+<td>nsummary()</td>
+<td>同上，包号</td>
+</tr>
+<tr>
+<td>conversations()</td>
+<td>显示对话图</td>
+</tr>
+<tr>
+<td>show()</td>
+<td>显示首选表示（通常是 nsummary()）</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>返回使用 lambda 函数过滤的数据包列表</td>
+</tr>
+<tr>
+<td>hexdump()</td>
+<td>返回所有数据包的十六进制转储</td>
+</tr>
+<tr>
+<td>hexraw()</td>
+<td>返回所有数据包的原始层的十六进制转储</td>
+</tr>
+<tr>
+<td>padding()</td>
+<td>返回带有填充的数据包的十六进制转储</td>
+</tr>
+<tr>
+<td>nzpadding()</td>
+<td>返回具有非零填充的数据包的十六进制转储</td>
+</tr>
+<tr>
+<td>plot()</td>
+<td>绘制应用于数据包列表的 lambda 函数</td>
+</tr>
+<tr>
+<td>make_table()</td>
+<td>根据 lambda 函数显示表格</td>
+</tr>
+</tbody></table>
+<h2 id="发送数据包"><a href="#发送数据包" class="headerlink" title="发送数据包"></a>发送数据包</h2><p>现在我们知道如何操作数据包了。让我们看看如何发送它们。send() 函数将在第 3 层（网络层）发送数据包。也就是说，它将为您处理路由和第 2 层（数据链路层）。sendp() 函数将在第 2 层（数据链路层）工作。您可以选择正确的接口和正确的链路层协议。如果return_packets=True 作为参数传递，send() 和 sendp() 也将返回已发送的数据包列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">send(pkg, iface=<span class="string">&#x27;以太网 4&#x27;</span>, loop=<span class="number">1</span>, inter=<span class="number">1</span>, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">pkg：数据包</span></span><br><span class="line"><span class="string">iface：网口名称（区分大小写，中英文）</span></span><br><span class="line"><span class="string">loop：循环发送</span></span><br><span class="line"><span class="string">inter：每隔1秒发送</span></span><br><span class="line"><span class="string">timeout：超时1秒就丢弃</span></span><br><span class="line"><span class="string">verbose：False不显示详细信息</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>层级</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sr</td>
+<td>3</td>
+<td>发送并接收所有包</td>
+</tr>
+<tr>
+<td>sr1</td>
+<td>3</td>
+<td>发送，接收回复的包 （一个一个收）</td>
+</tr>
+<tr>
+<td>srp</td>
+<td>2</td>
+<td>发送并接收所有包</td>
+</tr>
+<tr>
+<td>srp1</td>
+<td>2</td>
+<td>发送，接收回复的包</td>
+</tr>
+<tr>
+<td>send</td>
+<td>3</td>
+<td>只发送不接收</td>
+</tr>
+<tr>
+<td>sendp</td>
+<td>2</td>
+<td>只发送不接收</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">send(IP(dst=<span class="string">&quot;1.2.3.4&quot;</span>)/ICMP())</span><br><span class="line">sendp(Ether()/IP(dst=<span class="string">&quot;1.2.3.4&quot;</span>,ttl=(<span class="number">1</span>,<span class="number">4</span>)), iface=<span class="string">&quot;eth1&quot;</span>)</span><br><span class="line">sendp(<span class="string">&quot;I&#x27;m travelling on Ethernet&quot;</span>, iface=<span class="string">&quot;eth1&quot;</span>, loop=<span class="number">1</span>, inter=<span class="number">0.2</span>)</span><br><span class="line">sendp(rdpcap(<span class="string">&quot;/tmp/pcapfile&quot;</span>)) <span class="comment"># tcpreplay</span></span><br><span class="line">send(IP(dst=<span class="string">&#x27;127.0.0.1&#x27;</span>), return_packets=<span class="literal">True</span>)</span><br><span class="line">pkt = IP(src=<span class="string">&#x27;10.0.1.123&#x27;</span>, dst=<span class="string">&#x27;11.0.1.111&#x27;</span>) / TCP(sport=<span class="number">12345</span>, dport=<span class="number">5555</span>) / data</span><br><span class="line">send(pkt)  </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://github.com/446773160/Picbed/blob/main/blog_images20221116155049.png?raw=true" alt="blog_images20221116155049.png"></p>
+<h2 id="模糊测试"><a href="#模糊测试" class="headerlink" title="模糊测试"></a>模糊测试</h2><p>函数 fuzz() 能够更改任何不由其值是随机且其类型适合于该字段的对象<strong>计算的默认值（如校验和）</strong>。这可以快速构建模糊模板并循环发送它们。在下面的例子中，IP层正常，UDP和NTP层被fuzz。UDP 校验和将正确，UDP 目标端口将被 NTP 重载为 123，并且 NTP 版本将被强制为 4。所有其他端口将被随机化。注意：如果你在 IP 层使用 fuzz()，src 和 dst 参数不会是随机的，所以为了做到这一点，请使用 RandIP()。：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">send(IP(dst=<span class="string">&quot;target&quot;</span>)/fuzz(UDP()/NTP(version=<span class="number">4</span>)),loop=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="注入字节"><a href="#注入字节" class="headerlink" title="注入字节"></a>注入字节</h2><p>在一个数据包中，每个字段都有一个特定的类型。例如，IP 数据包的长度字段<code>len</code>需要一个整数。如果您正在开发 PoC，有时您会想要注入一些不适合该类型的值。这可以使用<code>RawVal</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pkt = IP(<span class="built_in">len</span>=RawVal(<span class="string">b&quot;NotAnInteger&quot;</span>), src=<span class="string">&quot;127.0.0.1&quot;</span>)</span><br><span class="line"><span class="built_in">bytes</span>(pkt)</span><br><span class="line"><span class="string">b&#x27;H\x00NotAnInt\x0f\xb3er\x00\x01\x00\x00@\x00\x00\x00\x7f\x00\x00\x01\x7f\x00\x00\x01\x00\x00&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="接收数据包"><a href="#接收数据包" class="headerlink" title="接收数据包"></a>接收数据包</h2><p>抓包函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">sniff(count=<span class="number">0</span>,</span><br><span class="line">      store=<span class="number">1</span>,</span><br><span class="line">      offline=<span class="literal">None</span>,</span><br><span class="line">      prn=<span class="literal">None</span>,</span><br><span class="line">      <span class="built_in">filter</span>=<span class="literal">None</span>,</span><br><span class="line">      L2socket=<span class="literal">None</span>,</span><br><span class="line">      timeout=<span class="literal">None</span>,</span><br><span class="line">      opened_socket=<span class="literal">None</span>,</span><br><span class="line">      stop_filter=<span class="literal">None</span>,</span><br><span class="line">      iface=<span class="literal">None</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">count:指定最多嗅探多少个符合要求的报文，设置为0时则一直捕获</span></span><br><span class="line"><span class="string">store:指定保存抓取的数据包或者丢弃，1为保存，0为丢弃</span></span><br><span class="line"><span class="string">offline:从pcap文件中读取数据包，而不进行嗅探，默认为None</span></span><br><span class="line"><span class="string">prn:为每个数据包定义一个回调函数，回调函数会在捕获到符合 filter 的报文时被调用，通常使用 lambda 表达式来编写</span></span><br><span class="line"><span class="string">filter:用来筛选抓取的信息，其用法与常见抓包软件WireShark 等相同，遵循 BPF 语法</span></span><br><span class="line"><span class="string">L2socket:使用给定的L2socket</span></span><br><span class="line"><span class="string">timeout:在给定的事件后停止嗅探，默认为None</span></span><br><span class="line"><span class="string">opened_socket:对指定的对象使用.recv进行读取</span></span><br><span class="line"><span class="string">stop_filter:定义一个函数，决定在抓到指定的数据之后停止</span></span><br><span class="line"><span class="string">iface:指定抓包的网卡,不指定则代表所有网卡  eth0,eth1.....</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#例如</span></span><br><span class="line">sniff(<span class="built_in">filter</span>=<span class="string">&quot;ip src 172.31.100.222 and tcp and tcp port 80&quot;</span>, prn=<span class="keyword">lambda</span> x:x.summary())</span><br><span class="line"></span><br><span class="line">pkt = sniff(<span class="built_in">filter</span>=<span class="string">&quot;host 192.168.2.46&quot;</span>)</span><br><span class="line"><span class="comment">#常见的filter实例</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">host 192.168.2.46【筛选源地址或目的地址为192.168.2.46的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">dst host 192.168.2.46【筛选目的地址为192.168.2.46的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">src host 192.168.2.46【筛选源地址为192.168.2.46的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ether host ff:ff:ff:ff:ff:ff【筛选以太网源地址或目的地址为192.168.2.46的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ether dst ff:ff:ff:ff:ff:ff【筛选以太网目的地址为192.168.2.46的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ether src ff:ff:ff:ff:ff:ff【筛选以太网源地址为192.168.2.46的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">dst port 8080【筛选目的地址为8080端口的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">src port 8080【筛选源地址为8080端口的数据包】</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">port 8080【筛选源地址和目的地址为8080的数据包，所有port前面都可以加上TCP和UDP】</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>发送和接收数据包 (sr)</p>
+<p>sr() 函数用于发送数据包和接收答案。该函数返回几个数据包和答案，以及未回答的数据包。函数 sr1() 是一种变体，它只返回一个响应发送的数据包（或数据包集）的数据包。数据包必须是第 3 层数据包（IP、ARP 等）。函数 srp() 对第 2 层数据包（以太网、802.3 等）执行相同的操作。如果没有响应，则在达到超时时将分配一个 None 值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p = sr1(IP(dst=<span class="string">&quot;www.slashdot.org&quot;</span>)/ICMP()/<span class="string">&quot;XXXXXXXXXXX&quot;</span>) <span class="comment">#p为接收数据，一个一个接收</span></span><br><span class="line">p=sr(IP(dst=<span class="string">&quot;172.20.29.5/30&quot;</span>)/TCP(dport=[<span class="number">21</span>,<span class="number">22</span>,<span class="number">23</span>]),inter=<span class="number">0.5</span>,retry=-<span class="number">2</span>,timeout=<span class="number">1</span>)<span class="comment">#全部接收</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">山不让尘，川不辞盈</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/11/16/scapy/">http://example.com/2022/11/16/scapy/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">山不让尘，川不辞盈</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/11/15/javaweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA(CentOS%E7%89%88%E6%9C%AC)/"><img class="next-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">javaweb开发环境搭建(CentOS版本)</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNS8zMzg5OQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14071825039%2F641&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668341762&amp;t=8f1764bb17a8a475a7658fd817bf1965" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">山不让尘，川不辞盈</div><div class="author-info__description">归途也还可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/446773160"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/446773160" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/446773160@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43762551?type=blog" target="_blank" title="CSDN"><i class="fa-solid fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到山不让尘,川不辞盈的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%92%8C%E5%AE%89%E8%A3%85Scapy"><span class="toc-number">1.</span> <span class="toc-text">下载和安装Scapy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8Scapy"><span class="toc-number">2.</span> <span class="toc-text">开始使用Scapy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.1.</span> <span class="toc-text">快速入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-number">2.2.</span> <span class="toc-text">解析数据包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96PCAP%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">读取PCAP文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E8%BD%AC%E5%AD%98-PDF%EF%BC%8CPS"><span class="toc-number">2.4.</span> <span class="toc-text">图像转存(PDF，PS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%8C%85%E9%9B%86"><span class="toc-number">2.5.</span> <span class="toc-text">生成数据包集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-number">2.6.</span> <span class="toc-text">发送数据包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95"><span class="toc-number">2.7.</span> <span class="toc-text">模糊测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%AD%97%E8%8A%82"><span class="toc-number">2.8.</span> <span class="toc-text">注入字节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="toc-number">2.9.</span> <span class="toc-text">接收数据包</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/16/scapy/" title="Scapy"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Scapy"/></a><div class="content"><a class="title" href="/2022/11/16/scapy/" title="Scapy">Scapy</a><time datetime="2022-11-16T08:00:00.000Z" title="发表于 2022-11-16 16:00:00">2022-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/15/javaweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA(CentOS%E7%89%88%E6%9C%AC)/" title="javaweb开发环境搭建(CentOS版本)"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="javaweb开发环境搭建(CentOS版本)"/></a><div class="content"><a class="title" href="/2022/11/15/javaweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA(CentOS%E7%89%88%E6%9C%AC)/" title="javaweb开发环境搭建(CentOS版本)">javaweb开发环境搭建(CentOS版本)</a><time datetime="2022-11-15T10:00:00.000Z" title="发表于 2022-11-15 18:00:00">2022-11-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/14/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/" title="常见错误汇总"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常见错误汇总"/></a><div class="content"><a class="title" href="/2022/11/14/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/" title="常见错误汇总">常见错误汇总</a><time datetime="2022-11-14T10:00:00.000Z" title="发表于 2022-11-14 18:00:00">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/10/Pytorch/" title="Pytorch"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pytorch"/></a><div class="content"><a class="title" href="/2022/11/10/Pytorch/" title="Pytorch">Pytorch</a><time datetime="2022-11-10T06:00:00.000Z" title="发表于 2022-11-10 14:00:00">2022-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/09/python/" title="Python"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python"/></a><div class="content"><a class="title" href="/2022/11/09/python/" title="Python">Python</a><time datetime="2022-11-09T10:00:00.000Z" title="发表于 2022-11-09 18:00:00">2022-11-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 山不让尘，川不辞盈</div><div class="footer_custom_text">Hi, welcome to My Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"> </div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "https://446773160.github.io/";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
