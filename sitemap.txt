@@ -1,10 +1,10 @@
+http://example.com/2022/11/09/python/
 http://example.com/2022/10/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/
 http://example.com/2022/11/10/Pytorch/
 http://example.com/2022/11/15/javaweb%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA(CentOS%E7%89%88%E6%9C%AC)/
 http://example.com/2022/11/14/%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/
 http://example.com/2022/10/15/Linux%E5%9F%BA%E7%A1%80/
 http://example.com/2022/10/21/%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86/
-http://example.com/2022/10/24/python/
 http://example.com/2022/10/21/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/
 http://example.com/2022/10/21/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/
 http://example.com/2022/10/18/SpringMVC/
