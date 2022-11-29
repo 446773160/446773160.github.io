@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SpringBoot注解 | 山不让尘，川不辞盈</title><meta name="author" content="山不让尘，川不辞盈"><meta name="copyright" content="山不让尘，川不辞盈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot注解">
+<meta property="og:url" content="http://example.com/2022/11/29/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="山不让尘，川不辞盈">
+<meta property="og:description" content="SpringBoot">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668339555&t=953420e9c4344774da896a7388445605">
+<meta property="article:published_time" content="2022-11-29T07:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-29T09:01:44.835Z">
+<meta property="article:author" content="山不让尘，川不辞盈">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668339555&t=953420e9c4344774da896a7388445605"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/11/29/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 山不让尘，川不辞盈","link":"链接: ","source":"来源: 山不让尘，川不辞盈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SpringBoot注解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-29 17:01:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="山不让尘，川不辞盈" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14071825039%2F641&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668341762&amp;t=8f1764bb17a8a475a7658fd817bf1965" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">山不让尘，川不辞盈</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SpringBoot注解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-29T07:00:00.000Z" title="发表于 2022-11-29 15:00:00">2022-11-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-29T09:01:44.835Z" title="更新于 2022-11-29 17:01:44">2022-11-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SpringBoot注解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h1><p>这个注解是Spring Boot最核心的注解，用在 Spring Boot的主类上，标识这是一个 Spring Boot 应用，用来开启 Spring Boot 的各项能力。实际上这个注解是@Configuration,@EnableAutoConfiguration,@ComponentScan三个注解的组合。由于这些注解一般都是一起使用，所以Spring Boot提供了一个统一的注解@SpringBootApplication。</p>
+<h1 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h1><p>允许 Spring Boot 自动配置注解，开启这个注解之后，Spring Boot 就能根据当前类路径下的包或者类来配置 Spring Bean。</p>
+<p>如：当前类路径下有 Mybatis 这个 JAR 包，MybatisAutoConfiguration 注解就能根据相关参数来配置 Mybatis 的各个 Spring Bean。</p>
+<p>@EnableAutoConfiguration实现的关键在于引入了AutoConfigurationImportSelector，其核心逻辑为selectImports方法，逻辑大致如下：</p>
+<p>　●　从配置文件META-INF/spring.factories加载所有可能用到的自动配置类；</p>
+<p>　●　去重，并将exclude和excludeName属性携带的类排除；</p>
+<p>　●　过滤，将满足条件（@Conditional）的自动配置类返回；</p>
+<h1 id="Configuration"><a href="#Configuration" class="headerlink" title="@Configuration"></a>@Configuration</h1><p>用于定义配置类，指出该类是 Bean 配置的信息源，相当于传统的xml配置文件，一般加在主类上。如果有些第三方库需要用到xml文件，建议仍然通过@Configuration类作为项目的配置主类——可以使用@ImportResource注解加载xml配置文件。</p>
+<h1 id="ComponentScan"><a href="#ComponentScan" class="headerlink" title="@ComponentScan"></a>@ComponentScan</h1><p>组件扫描。让spring Boot扫描到Configuration类并把它加入到程序上下文。</p>
+<p>@ComponentScan注解默认就会装配标识了@Controller，@Service，@Repository，@Component注解的类到spring容器中。</p>
+<h1 id="Repository"><a href="#Repository" class="headerlink" title="@Repository"></a>@Repository</h1><p>用于标注数据访问组件，即DAO组件。</p>
+<p>使用@Repository注解可以确保DAO或者repositories提供异常转译，这个注解修饰的DAO或者repositories类会被ComponetScan发现并配置，同时也不需要为它们提供XML配置项。</p>
+<h1 id="Service"><a href="#Service" class="headerlink" title="@Service"></a>@Service</h1><p>一般用于修饰service层的组件</p>
+<h1 id="RestController"><a href="#RestController" class="headerlink" title="@RestController"></a>@RestController</h1><p>用于标注控制层组件(如struts中的action)，表示这是个控制器bean,并且是将函数的返回值直 接填入HTTP响应体中,是REST风格的控制器；它是@Controller和@ResponseBody的合集。</p>
+<h1 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a>@ResponseBody</h1><p>表示该方法的返回结果直接写入HTTP response body中。一般在异步获取数据时使用，在使用@RequestMapping后，返回值通常解析为跳转路径，加上@responsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。比如异步获取json数据，<strong>加上@responsebody后，会直接返回json数据。</strong></p>
+<h1 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h1><p>泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。</p>
+<h1 id="Bean"><a href="#Bean" class="headerlink" title="@Bean"></a>@Bean</h1><p>相当于XML中的<bean></bean>,放在方法的上面，而不是类，意思是产生一个bean,并交给spring管理。</p>
+<h1 id="AutoWired"><a href="#AutoWired" class="headerlink" title="@AutoWired"></a>@AutoWired</h1><p>byType方式。把配置好的Bean拿来用，完成属性、方法的组装，它可以对类成员变量、方法及构造函数进行标注，完成自动装配的工作。</p>
+<p>当加上（required=false）时，就算找不到bean也不报错。</p>
+<h1 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h1><p>当有多个同一类型的Bean时，可以用@Qualifier(“name”)来指定。与@Autowired配合使用</p>
+<h1 id="Resource-name-”name”-type-”type”"><a href="#Resource-name-”name”-type-”type”" class="headerlink" title="@Resource(name=”name”,type=”type”)"></a>@Resource(name=”name”,type=”type”)</h1><p>没有括号内内容的话，默认byName。与@Autowired干类似的事。</p>
+<h1 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h1><p>RequestMapping是一个用来处理请求地址映射的注解；提供路由信息，负责URL到Controller中的具体函数的映射，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。</p>
+<ul>
+<li><code>value</code>:映射的请求URL或者其别名</li>
+<li><code>method</code>:兼容HTTP的方法名</li>
+<li><code>params</code>:根据HTTP参数的存在、缺省或值对请求进行过滤</li>
+<li><code>header</code>:根据HTTP Header的存在、缺省或值对请求进行过滤</li>
+<li><code>consume</code>:设定在HTTP请求正文中允许使用的媒体类型</li>
+<li><code>product</code>:在HTTP响应体中允许使用的媒体类型</li>
+</ul>
+<p>提示：在使用@RequestMapping之前，请求处理类还需要使用@Controller或@RestController进行标记下面是使用@RequestMapping的两个示例：</p>
+<p><img src="https://s8.51cto.com/oss/202206/15/326128e90f0e1cc1856700db0139f1dc75c338.jpg" alt="图片"></p>
+<p>@RequestMapping还可以对类进行标记，这样类中的处理方法在映射请求路径时，会自动将类上@RequestMapping设置的value拼接到方法中映射路径之前，如下：</p>
+<p><img src="https://s9.51cto.com/oss/202206/15/d2060b050f5ab0c35ef4884792f07f887cedd1.jpg" alt="图片"></p>
+<h1 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a>@PathVariable</h1><p><code>@PathVariable</code>注解是将方法中的参数绑定到请求URI中的模板变量上。可以通过<code>@RequestMapping</code>注解来指定URI的模板变量，然后使用<code>@PathVariable</code>注解将方法中的参数绑定到模板变量上。特别地，<code>@PathVariable</code>注解允许我们使用value或name属性来给参数取一个别名。下面是使用此注解的一个示例：</p>
+<p><img src="https://s9.51cto.com/oss/202206/15/67b5d0e51e44b21cd511748b3b3b5356fcfc56.jpg" alt="图片"></p>
+<p>模板变量名需要使用<code>&#123; &#125;</code>进行包裹，如果方法的参数名与URI模板变量名一致，则在<code>@PathVariable</code>中就可以省略别名的定义。下面是一个简写的示例：</p>
+<p><img src="https://s4.51cto.com/oss/202206/15/d866b84086cb835ecd56331161bb9a0361816c.jpg" alt="图片"></p>
+<p>提示：如果参数是一个非必须的，可选的项，则可以在@PathVariable中设置require=false@RequestParam@RequestParam注解用于将方法的参数与Web请求的传递的参数进行绑定。使用@RequestParam可以轻松的访问HTTP请求参数的值。下面是使用该注解的代码示例：</p>
+<p><img src="https://s2.51cto.com/oss/202206/15/816c991693fd4bcaa39898c45b2ab0b42e869f.jpg" alt="图片"></p>
+<p>该注解的其他属性配置与<code>@PathVariable</code>的配置相同，特别的，如果传递的参数为空，还可以通过defaultValue设置一个默认值。示例代码如下：</p>
+<p><img src="https://s8.51cto.com/oss/202206/15/15e6aa6840a3df347a82134b60fa4d0dc72ea9.jpg" alt="图片"></p>
+<h1 id="RequestBody"><a href="#RequestBody" class="headerlink" title="@RequestBody"></a>@RequestBody</h1><p>@RequestBody在处理请求方法的参数列表中使用，它可以将请求主体中的参数绑定到一个对象中，请求主体参数是通过<code>HttpMessageConverter</code>传递的，根据请求主体中的参数名与对象的属性名进行匹配并绑定值。此外，还可以通过@Valid注解对请求主体中的参数进行校验。下面是一个使用<code>@RequestBody</code>的示例：</p>
+<p><img src="https://s2.51cto.com/oss/202206/15/d745a8798e08963a39c350241753f1fd688fc2.jpg" alt="图片"></p>
+<p>@Valid在进行数据校验的时候需要在实体类的字段名上加上注解标注字段的取值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 姓名 */</span></span><br><span class="line">    <span class="meta">@NotBlank(message = &quot;请输入名称&quot;)</span></span><br><span class="line">    <span class="meta">@Length(message = &quot;名称不能超过个 &#123;max&#125; 字符&quot;, max = 10)</span></span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/** 年龄 */</span></span><br><span class="line">    <span class="meta">@NotNull(message = &quot;请输入年龄&quot;)</span></span><br><span class="line">    <span class="meta">@Range(message = &quot;年龄范围为 &#123;min&#125; 到 &#123;max&#125; 之间&quot;, min = 1, max = 100)</span></span><br><span class="line">    <span class="keyword">public</span> Integer age;</span><br></pre></td></tr></table></figure>
+
+<p>标注之后在RequestBody进行映射的时候会对数据进行验证，如果不符合要求则会返回message信息</p>
+<h1 id="GetMapping"><a href="#GetMapping" class="headerlink" title="@GetMapping"></a>@GetMapping</h1><p><code>@GetMapping</code>注解用于处理HTTP GET请求，并将请求映射到具体的处理方法中。具体来说，@GetMapping是一个组合注解，它相当于是<code>@RequestMapping(method=RequestMethod.GET)</code>的快捷方式。下面是<code>@GetMapping</code>的一个使用示例：</p>
+<p><img src="https://s3.51cto.com/oss/202206/15/f4de9f638b01d70bee9156b39eca886f71254e.jpg" alt="图片"></p>
+<h1 id="PostMapping"><a href="#PostMapping" class="headerlink" title="@PostMapping"></a>@PostMapping</h1><p><code>@PostMapping</code>注解用于处理HTTP POST请求，并将请求映射到具体的处理方法中。@PostMapping与@GetMapping一样，也是一个组合注解，它相当于是<code>@RequestMapping(method=HttpMethod.POST)</code>的快捷方式。下面是使用<code>@PostMapping</code>的一个示例：</p>
+<p><img src="https://s7.51cto.com/oss/202206/15/247798479df3a6a26e53640831216acbaeb500.jpg" alt="图片"></p>
+<h1 id="PutMapping"><a href="#PutMapping" class="headerlink" title="@PutMapping"></a>@PutMapping</h1><p><code>@PutMapping</code>注解用于处理HTTP PUT请求，并将请求映射到具体的处理方法中，@PutMapping是一个组合注解，相当于是<code>@RequestMapping(method=HttpMethod.PUT)</code>的快捷方式。下面是使用<code>@PutMapping</code>的一个示例：</p>
+<p><img src="https://s7.51cto.com/oss/202206/15/4468c6249f67830d8a64718d91585f02c18da1.jpg" alt="图片"></p>
+<h1 id="DeleteMapping"><a href="#DeleteMapping" class="headerlink" title="@DeleteMapping"></a>@DeleteMapping</h1><p><code>@DeleteMapping</code>注解用于处理HTTP DELETE请求，并将请求映射到删除方法中。@DeleteMapping是一个组合注解，它相当于是<code>@RequestMapping(method=HttpMethod.DELETE)</code>的快捷方式。下面是使用<code>@DeleteMapping</code>的一个示例：</p>
+<p><img src="https://s5.51cto.com/oss/202206/15/994d47a01df0279903f123410493b9e0b870a3.jpg" alt="图片"></p>
+<h1 id="PatchMapping"><a href="#PatchMapping" class="headerlink" title="@PatchMapping"></a>@PatchMapping</h1><p><code>@PatchMapping</code>注解用于处理HTTP PATCH请求，并将请求映射到对应的处理方法中。@PatchMapping相当于是<code>@RequestMapping(method=HttpMethod.PATCH)</code>的快捷方式。下面是一个简单的示例：</p>
+<p><img src="https://s6.51cto.com/oss/202206/15/b9f511b11392a89b5ca900ffc34c73775753b4.jpg" alt="图片"></p>
+<h1 id="ControllerAdvice"><a href="#ControllerAdvice" class="headerlink" title="@ControllerAdvice"></a>@ControllerAdvice</h1><p><code>@ControllerAdvice</code>是@Component注解的一个延伸注解，Spring会自动扫描并检测被@ControllerAdvice所标注的类。<code>@ControllerAdvice</code>需要和<code>@ExceptionHandler</code>、<code>@InitBinder</code>以及<code>@ModelAttribute</code>注解搭配使用，主要是用来处理控制器所抛出的异常信息。首先，我们需要定义一个被<code>@ControllerAdvice</code>所标注的类，在该类中，定义一个用于处理具体异常的方法，并使用@ExceptionHandler注解进行标记。此外，在有必要的时候，可以使用<code>@InitBinder</code>在类中进行全局的配置，还可以使用@ModelAttribute配置与视图相关的参数。使用<code>@ControllerAdvice</code>注解，就可以快速的创建统一的，自定义的异常处理类。下面是一个使用<code>@ControllerAdvice</code>的示例代码：</p>
+<h2 id="ControllerAdvice-配合-ExceptionHandler-实现全局异常处理"><a href="#ControllerAdvice-配合-ExceptionHandler-实现全局异常处理" class="headerlink" title="@ControllerAdvice 配合 @ExceptionHandler 实现全局异常处理"></a>@ControllerAdvice 配合 @ExceptionHandler 实现全局异常处理</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GlobalExceptionHandler</span> &#123;</span><br><span class="line">    <span class="meta">@ExceptionHandler(IllegalArgumentException.class)</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">handleException</span><span class="params">(IllegalArgumentException e)</span>&#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">modelAndView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">&quot;errorMessage&quot;</span>, <span class="string">&quot;参数不符合规范!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ControllerAdvice-配合-ModelAttribute-预设全局数据"><a href="#ControllerAdvice-配合-ModelAttribute-预设全局数据" class="headerlink" title="@ControllerAdvice 配合 @ModelAttribute 预设全局数据"></a>@ControllerAdvice 配合 @ModelAttribute 预设全局数据</h2><p>我们先来看看 <code>ModelAttribute</code>注解类的源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Annotation that binds a method parameter or method return value</span></span><br><span class="line"><span class="comment"> * to a named model attribute, exposed to a web view. Supported</span></span><br><span class="line"><span class="comment"> * for controller classes with &#123;<span class="doctag">@link</span> RequestMapping <span class="doctag">@RequestMapping</span>&#125;</span></span><br><span class="line"><span class="comment"> * methods.</span></span><br><span class="line"><span class="comment"> * 此注解用于绑定一个方法参数或者返回值到一个被命名的model属性中，暴露给web视图。支持在</span></span><br><span class="line"><span class="comment"> * 在Controller类中注有<span class="doctag">@RequestMapping</span>的方法使用（这里有点拗口，不过结合下面的使用介绍</span></span><br><span class="line"><span class="comment"> * 你就会明白的)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.PARAMETER, ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ModelAttribute &#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@AliasFor(&quot;name&quot;)</span></span><br><span class="line">	String <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@AliasFor(&quot;value&quot;)</span></span><br><span class="line">	String <span class="title function_">name</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">boolean</span> <span class="title function_">binding</span><span class="params">()</span> <span class="keyword">default</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>实际上这个注解的作用就是，允许你往 <code>Model</code> 中注入全局属性（可以供所有Controller中注有@Request Mapping的方法使用），<code>value</code> 和 <code>name</code> 用于指定 属性的 <code>key</code> ，<code>binding</code> 表示是否绑定，默认为 <code>true</code>。</p>
+<p>具体使用方法如下：</p>
+<p>全局参数绑定</p>
+<p>方式一：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyGlobalHandler</span> &#123;</span><br><span class="line">    <span class="meta">@ModelAttribute</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">presetParam</span><span class="params">(Model model)</span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">&quot;globalAttr&quot;</span>,<span class="string">&quot;this is a global attribute&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>方式二：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyGlobalHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ModelAttribute()</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String, String&gt; <span class="title function_">presetParam</span><span class="params">()</span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, String&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;key1&quot;</span>, <span class="string">&quot;value1&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;key2&quot;</span>, <span class="string">&quot;value2&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;key3&quot;</span>, <span class="string">&quot;value3&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这种方式对于加单个属性比较方便。默认会把返回值（如上面的map）作为属性的value，而对于key有两种指定方式：</p>
+<p>当 @ModelAttribute() 不传任何参数的时候，默认会把返回值的字符串值作为key，如上例的 key 则是 ”map”（值得注意的是，不支持字符串的返回值作为key）。<br>当 @ModelAttribute(“myMap”) 传参数的时候，则以参数值作为key，这里 key 则是 ”myMap“。</p>
+<p><strong>全局参数使用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AdviceController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;methodOne&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">methodOne</span><span class="params">(Model model)</span>&#123; </span><br><span class="line">        Map&lt;String, Object&gt; modelMap = model.asMap();</span><br><span class="line">        <span class="keyword">return</span> (String)modelMap.get(<span class="string">&quot;globalAttr&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">    <span class="meta">@GetMapping(&quot;methodTwo&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">methodTwo</span><span class="params">(<span class="meta">@ModelAttribute(&quot;globalAttr&quot;)</span> String globalAttr)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> globalAttr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;methodThree&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">methodThree</span><span class="params">(ModelMap modelMap)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (String) modelMap.get(<span class="string">&quot;globalAttr&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="请求参数预处理"><a href="#请求参数预处理" class="headerlink" title="请求参数预处理"></a>请求参数预处理</h3><p>@ControllerAdvice 配合 @InitBinder 实现对请求参数的预处理</p>
+<p>再次之前我们先来了解一下 <code>@IniiBinder</code>，先看一下源码，我会提取一些重要的注释进行浅析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Annotation that identifies methods which initialize the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> org.springframework.web.bind.WebDataBinder&#125; which</span></span><br><span class="line"><span class="comment"> * will be used for populating command and form object arguments</span></span><br><span class="line"><span class="comment"> * of annotated handler methods.</span></span><br><span class="line"><span class="comment"> * 粗略翻译：此注解用于标记那些 (初始化[用于组装命令和表单对象参数的]WebDataBinder)的方法。</span></span><br><span class="line"><span class="comment"> * 原谅我的英语水平，翻译起来太拗口了，从句太多就用‘()、[]’分割一下便于阅读</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Init-binder methods must not have a return value; they are usually</span></span><br><span class="line"><span class="comment"> * declared as &#123;<span class="doctag">@code</span> void&#125;.</span></span><br><span class="line"><span class="comment"> * 粗略翻译：初始化绑定的方法禁止有返回值，他们通常声明为 &#x27;void&#x27;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Typical arguments are &#123;<span class="doctag">@link</span> org.springframework.web.bind.WebDataBinder&#125;</span></span><br><span class="line"><span class="comment"> * in combination with &#123;<span class="doctag">@link</span> org.springframework.web.context.request.WebRequest&#125;</span></span><br><span class="line"><span class="comment"> * or &#123;<span class="doctag">@link</span> java.util.Locale&#125;, allowing to register context-specific editors.</span></span><br><span class="line"><span class="comment"> * 粗略翻译：典型的参数是`WebDataBinder`，结合`WebRequest`或`Locale`使用，允许注册特定于上下文的编辑 </span></span><br><span class="line"><span class="comment"> * 器。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 总结如下：</span></span><br><span class="line"><span class="comment"> *  1. <span class="doctag">@InitBinder</span> 标识的方法的参数通常是 WebDataBinder。</span></span><br><span class="line"><span class="comment"> *  2. <span class="doctag">@InitBinder</span> 标识的方法,可以对 WebDataBinder 进行初始化。WebDataBinder 是 DataBinder 的一</span></span><br><span class="line"><span class="comment"> * 		           个子类,用于完成由表单字段到 JavaBean 属性的绑定。</span></span><br><span class="line"><span class="comment"> *  3. <span class="doctag">@InitBinder</span> 标识的方法不能有返回值,必须声明为void。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> InitBinder &#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * The names of command/form attributes and/or request parameters</span></span><br><span class="line"><span class="comment">	 * that this init-binder method is supposed to apply to.</span></span><br><span class="line"><span class="comment">	 * &lt;p&gt;Default is to apply to all command/form attributes and all request parameters</span></span><br><span class="line"><span class="comment">	 * processed by the annotated handler class. Specifying model attribute names or</span></span><br><span class="line"><span class="comment">	 * request parameter names here restricts the init-binder method to those specific</span></span><br><span class="line"><span class="comment">	 * attributes/parameters, with different init-binder methods typically applying to</span></span><br><span class="line"><span class="comment">	 * different groups of attributes or parameters.</span></span><br><span class="line"><span class="comment">	 * 粗略翻译：此init-binder方法应该应用于的命令/表单属性和/或请求参数的名称。默认是应用于所有命	   		* 令/表单属性和所有由带注释的处理类处理的请求参数。这里指定模型属性名或请求参数名将init-binder		 * 方法限制为那些特定的属性/参数，不同的init-binder方法通常应用于不同的属性或参数组。</span></span><br><span class="line"><span class="comment">	 * 我至己都理解不太理解这说的是啥呀，我们还是看例子吧</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们来看看具体用途，其实这些用途在 <code>Controller</code>里也可以定义，但是作用范围就只限当前Controller，因此下面的例子我们将结合 <code>ControllerAdvice</code> 作全局处理。</p>
+<h3 id="参数处理"><a href="#参数处理" class="headerlink" title="参数处理"></a>参数处理</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyGlobalHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InitBinder</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">processParam</span><span class="params">(WebDataBinder dataBinder)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 创建一个字符串微调编辑器</span></span><br><span class="line"><span class="comment">         * 参数&#123;boolean emptyAsNull&#125;: 是否把空字符串(&quot;&quot;)视为 null</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">StringTrimmerEditor</span> <span class="variable">trimmerEditor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringTrimmerEditor</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 注册自定义编辑器</span></span><br><span class="line"><span class="comment">         * 接受两个参数&#123;Class&lt;?&gt; requiredType, PropertyEditor propertyEditor&#125;</span></span><br><span class="line"><span class="comment">         * requiredType：所需处理的类型</span></span><br><span class="line"><span class="comment">         * propertyEditor：属性编辑器，StringTrimmerEditor就是 propertyEditor的一个子类</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        dataBinder.registerCustomEditor(String.class, trimmerEditor);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//同上，这里就不再一步一步讲解了</span></span><br><span class="line">        dataBinder.registerCustomEditor(Date.class,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">CustomDateEditor</span>(<span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd&quot;</span>), <span class="literal">false</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这样之后呢，就可以实现全局的实现对 <code>Controller</code> 中<code>RequestMapping</code>标识的方法中的所有 <code>String</code> 和<code>Date</code>类型的参数都会被作相应的处理。</p>
+<p>测试一下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BinderTestController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;processParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title function_">test</span><span class="params">(String str, Date date)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, Object&gt;();</span><br><span class="line">        map.put(<span class="string">&quot;str&quot;</span>, str);</span><br><span class="line">        map.put(<span class="string">&quot;data&quot;</span>, date);</span><br><span class="line">        <span class="keyword">return</span>  map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>参数绑定</p>
+<p>参数绑定可以解决特定问题，那么我们先来看看我们面临的问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="comment">// omitted getters and setters.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Double price;</span><br><span class="line">    <span class="comment">// omitted getters and setters.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BinderTestController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping(&quot;bindParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(Person person, Book book)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(person);</span><br><span class="line">        System.out.println(book);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们会发现 <code>Person</code>类和 <code>Book</code> 类都有 <code>name</code>属性，那么这个时候就会出先问题，它可没有那么只能区分哪个<code>name</code>是哪个类的。因此 <code>@InitBinder</code>就派上用场了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyGlobalHandler</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">     * @InitBinder(&quot;person&quot;) 对应找到@RequstMapping标识的方法参数中</span></span><br><span class="line"><span class="comment">     * 找参数名为person的参数。</span></span><br><span class="line"><span class="comment">     * 在进行参数绑定的时候，以‘p.’开头的都绑定到名为person的参数中。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@InitBinder(&quot;person&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">BindPerson</span><span class="params">(WebDataBinder dataBinder)</span>&#123;</span><br><span class="line">        dataBinder.setFieldDefaultPrefix(<span class="string">&quot;p.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InitBinder(&quot;book&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">BindBook</span><span class="params">(WebDataBinder dataBinder)</span>&#123;</span><br><span class="line">        dataBinder.setFieldDefaultPrefix(<span class="string">&quot;b.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>因此，传入的同名信息就能对应绑定到相应的实体类中：</p>
+<blockquote>
+<p>p.name -&gt; Person.name b.name -&gt; Book.name</p>
+<p>还有一点注意的是如果 @InitBinder(“value”) 中的 value 值和 Controller 中 @RequestMapping() 标识的方法的参数名不匹配，则就会产生绑定失败的后果,如：</p>
+<p>@InitBinder(“p”)、@InitBinder(“b”)</p>
+<p>public void test(Person person, Book book)</p>
+<p>上述情况就会出现绑定失败，有两种解决办法</p>
+<p>第一中：统一名称，要么全叫p，要么全叫person，只要相同就行。</p>
+<p>第二种：方法参数加 @ModelAttribute，有点类似@RequestParam</p>
+<p>@InitBinder(“p”)、@InitBinder(“b”)</p>
+<p>public void test(@ModelAttribute(“p”) Person person, @ModelAttribute(“b”) Book book)</p>
+</blockquote>
+<h1 id="ExceptionHandler"><a href="#ExceptionHandler" class="headerlink" title="@ExceptionHandler"></a>@ExceptionHandler</h1><p><code>@ExceptionHander</code>注解用于标注处理特定类型异常类所抛出异常的方法。当控制器中的方法抛出异常时，Spring会自动捕获异常，并将捕获的异常信息传递给被<code>@ExceptionHandler</code>标注的方法。下面是使用该注解的一个示例：</p>
+<p><img src="https://s3.51cto.com/oss/202206/15/26e18e20674af12382c686c32272827e75430a.jpg" alt="图片"></p>
+<h1 id="ResponseStatus"><a href="#ResponseStatus" class="headerlink" title="@ResponseStatus"></a>@ResponseStatus</h1><p>@ResponseStatus注解可以标注请求处理方法。使用此注解，可以指定响应所需要的HTTP STATUS。特别地，我们可以使用HttpStauts类对该注解的value属性进行赋值。下面是使用@ResponseStatus注解的一个示例：</p>
+<p><img src="https://s4.51cto.com/oss/202206/15/f4401b4412d2f369049171b4a3e9579b749a5f.jpg" alt="图片"></p>
+<h1 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a>@ModelAttribute</h1><p>通过此注解，可以通过模型索引名称来访问已经存在于控制器中的model。下面是使用此注解的一个简单示例：</p>
+<p><img src="https://s7.51cto.com/oss/202206/15/123a5574786bad89ef2957975f86f36e550036.jpg" alt="图片"></p>
+<p>与<code>@PathVariable</code>和<code>@RequestParam</code>注解一样，如果参数名与模型具有相同的名字，则不必指定索引名称，简写示例如下：</p>
+<p><img src="https://s9.51cto.com/oss/202206/15/d8d0ad4826e4d6eb5ef6858dc1f57cdc060ba8.jpg" alt="图片"></p>
+<p>特别地，如果使用<code>@ModelAttribute</code>对方法进行标注，Spring会将方法的返回值绑定到具体的Model上。示例如下：</p>
+<p><img src="https://s3.51cto.com/oss/202206/15/b458b53921fd2d263696357fd1b0fc95f8ba01.jpg" alt="图片"></p>
+<p>在Spring调用具体的处理方法之前，被<code>@ModelAttribute</code>注解标注的所有方法都将被执行。**@CrossOrigin**``注解将为请求处理类或请求处理方法提供跨域调用支持。如果我们将此注解标注类，那么类中的所有方法都将获得支持跨域的能力。使用此注解的好处是可以微调跨域行为。使用此注解的示例如下：</p>
+<p><img src="https://s7.51cto.com/oss/202206/15/c5ee5f4771df9a7c7482576e8f46bccf105623.jpg" alt="图片"></p>
+<h1 id="DependsOn"><a href="#DependsOn" class="headerlink" title="@DependsOn"></a>@DependsOn</h1><p><code>@DependsOn</code>注解可以配置Spring IoC容器在初始化一个Bean之前，先初始化其他的Bean对象。下面是此注解使用示例代码：</p>
+<p><img src="https://s2.51cto.com/oss/202206/15/f42652c422cbc9ffd9238948675cbec8b0d99f.jpg" alt="图片"></p>
+<h1 id="Bean-1"><a href="#Bean-1" class="headerlink" title="@Bean"></a>@Bean</h1><p>@Bean注解主要的作用是告知Spring，被此注解所标注的类将需要纳入到Bean管理工厂中。@Bean注解的用法很简单，在这里，着重介绍@Bean注解中<code>initMethod</code>和<code>destroyMethod</code>的用法。示例如下：</p>
+<p><img src="https://s2.51cto.com/oss/202206/15/88813cc2291888b570f058a37aa0d31677bcd2.jpg" alt="图片"></p>
+<h1 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h1><p>@Scope注解可以用来定义@Component标注的类的作用范围以及@Bean所标记的类的作用范围。@Scope所限定的作用范围有：<code>singleton</code>、<code>prototype</code>、<code>request</code>、<code>session</code>、<code>globalSession</code>或者其他的自定义范围。这里以prototype为例子进行讲解。当一个Spring Bean被声明为prototype（原型模式）时，在每次需要使用到该类的时候，Spring IoC容器都会初始化一个新的改类的实例。在定义一个Bean时，可以设置Bean的scope属性为<code>prototype：scope=“prototype”</code>,也可以使用@Scope注解设置，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Scope(value=ConfigurableBeanFactory.SCOPE_PROPTOTYPE)</span><br></pre></td></tr></table></figure>
+
+<p>下面将给出两种不同的方式来使用@Scope注解，示例代码如下：</p>
+<p><img src="https://s2.51cto.com/oss/202206/15/58a728501eba99314547134b0b1fec2c3c1366.jpg" alt="图片"></p>
+<p><strong>单例模式</strong>当@Scope的作用范围设置成Singleton时，被此注解所标注的类只会被Spring IoC容器初始化一次。在默认情况下，Spring IoC容器所初始化的类实例都为singleton。同样的原理，此情形也有两种配置方式，示例代码如下：</p>
+<p><img src="https://s5.51cto.com/oss/202206/15/050a2fc37ece2cf8472756e71d5f9c6e054364.jpg" alt="图片"></p>
+<h1 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h1><p>@Autowired注解用于标记Spring将要解析和注入的依赖项。此注解可以作用在构造函数、字段和setter方法上。</p>
+<h2 id="作用于构造函数"><a href="#作用于构造函数" class="headerlink" title="作用于构造函数"></a>作用于构造函数</h2><p><img src="https://s5.51cto.com/oss/202206/15/c695029224973fbd2f62445c9fae8f8f9758c6.jpg" alt="图片"></p>
+<h2 id="作用于setter方法"><a href="#作用于setter方法" class="headerlink" title="作用于setter方法"></a>作用于setter方法</h2><p>下面是@Autowired注解标注setter方法的示例代码：</p>
+<p><img src="https://s4.51cto.com/oss/202206/15/e6c42c5318e3b879e001523c6327501e03c8ea.jpg" alt="图片"></p>
+<h2 id="作用于字段"><a href="#作用于字段" class="headerlink" title="作用于字段"></a>作用于字段</h2><p>@Autowired注解标注字段是最简单的，只需要在对应的字段上加入此注解即可，示例代码如下：</p>
+<p><img src="https://s5.51cto.com/oss/202206/15/a67869204dfa7603aa85979d8b45bc0ab7c993.jpg" alt="图片"></p>
+<h1 id="Primary"><a href="#Primary" class="headerlink" title="@Primary"></a>@Primary</h1><p>当系统中需要配置多个具有相同类型的bean时，@Primary可以定义这些Bean的优先级。下面将给出一个实例代码来说明这一特性：</p>
+<p><img src="https://s2.51cto.com/oss/202206/15/b8399867508b7dbe11d8217092abf86c36bf57.jpg" alt="图片"></p>
+<h1 id="PostConstruct与-PreDestroy"><a href="#PostConstruct与-PreDestroy" class="headerlink" title="@PostConstruct与@PreDestroy"></a>@PostConstruct与@PreDestroy</h1><p>值得注意的是，这两个注解不属于Spring,它们是源于JSR-250中的两个注解，位于<code>common-annotations.jar</code>中。@PostConstruct注解用于标注在Bean被Spring初始化之前需要执行的方法。@PreDestroy注解用于标注Bean被销毁前需要执行的方法。下面是具体的示例代码：</p>
+<p><img src="https://s9.51cto.com/oss/202206/15/d6adcbe386f0942a203086e19cd0bc36d0c7cf.jpg" alt="图片"></p>
+<h1 id="Qualifier-1"><a href="#Qualifier-1" class="headerlink" title="@Qualifier"></a>@Qualifier</h1><p>当系统中存在同一类型的多个Bean时，@Autowired在进行依赖注入的时候就不知道该选择哪一个实现类进行注入。此时，我们可以使用@Qualifier注解来微调，帮助@Autowired选择正确的依赖项。下面是一个关于此注解的代码示例：</p>
+<p><img src="https://s9.51cto.com/oss/202206/15/3802111933c371a4bc54998f7e202181feb384.jpg" alt="图片"></p>
+<h1 id="ConditionalOnBean与-ConditionalOnMissingBean"><a href="#ConditionalOnBean与-ConditionalOnMissingBean" class="headerlink" title="@ConditionalOnBean与@ConditionalOnMissingBean"></a>@ConditionalOnBean与@ConditionalOnMissingBean</h1><p>这两个注解属于对象条件注解，根据是否存在某个对象作为依据来决定是否要执行某些配置方法。示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnBean(name=&quot;dataSource&quot;)</span></span><br><span class="line">LocalContainerEntityManagerFactoryBean <span class="title function_">entityManagerFactory</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line"><span class="keyword">public</span> MyBean <span class="title function_">myBean</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ConditionalOnProperty"><a href="#ConditionalOnProperty" class="headerlink" title="@ConditionalOnProperty"></a>@ConditionalOnProperty</h1><p>@ConditionalOnProperty注解会根据Spring配置文件中的配置项是否满足配置要求，从而决定是否要执行被其标注的方法。示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnProperty(name=&quot;alipay&quot;,havingValue=&quot;on&quot;)</span></span><br><span class="line">Alipay <span class="title function_">alipay</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Alipay</span>();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ConditionalOnResource"><a href="#ConditionalOnResource" class="headerlink" title="@ConditionalOnResource"></a>@ConditionalOnResource</h1><p>此注解用于检测当某个配置文件存在使，则触发被其标注的方法，下面是使用此注解的代码示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@ConditionalOnResource(resources = &quot;classpath:website.properties&quot;)</span><br><span class="line">Properties addWebsiteProperties()&#123;</span><br><span class="line">        //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ConditionalOnWebApplication与-ConditionalOnNotWebApplication"><a href="#ConditionalOnWebApplication与-ConditionalOnNotWebApplication" class="headerlink" title="@ConditionalOnWebApplication与@ConditionalOnNotWebApplication"></a>@ConditionalOnWebApplication与@ConditionalOnNotWebApplication</h1><p>这两个注解用于判断当前的应用程序是否是Web应用程序。如果当前应用是Web应用程序，则使用Spring WebApplicationContext,并定义其会话的生命周期。下面是一个简单的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConditionalOnWebApplication</span></span><br><span class="line">HealthCheckController <span class="title function_">healthCheckController</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ConditionalExpression"><a href="#ConditionalExpression" class="headerlink" title="@ConditionalExpression"></a>@ConditionalExpression</h1><p>此注解可以让我们控制更细粒度的基于表达式的配置条件限制。当表达式满足某个条件或者表达式为真的时候，将会执行被此注解标注的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalException(&quot;$&#123;localstore&#125; &amp;&amp; $&#123;local == &#x27;true&#x27;&#125;&quot;)</span></span><br><span class="line">LocalFileStore <span class="title function_">store</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Conditional"><a href="#Conditional" class="headerlink" title="@Conditional"></a>@Conditional</h1><p>@Conditional注解可以控制更为复杂的配置条件。在Spring内置的条件控制注解不满足应用需求的时候，可以使用此注解定义自定义的控制条件，以达到自定义的要求。下面是使用该注解的简单示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Conditioanl(CustomConditioanl.class)</span></span><br><span class="line">CustomProperties <span class="title function_">addCustomProperties</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">山不让尘，川不辞盈</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/11/29/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">http://example.com/2022/11/29/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">山不让尘，川不辞盈</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/11/29/%E6%B0%B4%E8%AE%BA%E6%96%87/"><img class="prev-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">论文模板</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/29/String%E7%B1%BB/"><img class="next-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">String类</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNS8zMzg5OQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14071825039%2F641&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668341762&amp;t=8f1764bb17a8a475a7658fd817bf1965" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">山不让尘，川不辞盈</div><div class="author-info__description">归途也还可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/446773160"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/446773160" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/446773160@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43762551?type=blog" target="_blank" title="CSDN"><i class="fa-solid fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到山不让尘,川不辞盈的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBootApplication"><span class="toc-number">1.</span> <span class="toc-text">@SpringBootApplication</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#EnableAutoConfiguration"><span class="toc-number">2.</span> <span class="toc-text">@EnableAutoConfiguration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Configuration"><span class="toc-number">3.</span> <span class="toc-text">@Configuration</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ComponentScan"><span class="toc-number">4.</span> <span class="toc-text">@ComponentScan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Repository"><span class="toc-number">5.</span> <span class="toc-text">@Repository</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Service"><span class="toc-number">6.</span> <span class="toc-text">@Service</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RestController"><span class="toc-number">7.</span> <span class="toc-text">@RestController</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ResponseBody"><span class="toc-number">8.</span> <span class="toc-text">@ResponseBody</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Component"><span class="toc-number">9.</span> <span class="toc-text">@Component</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean"><span class="toc-number">10.</span> <span class="toc-text">@Bean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AutoWired"><span class="toc-number">11.</span> <span class="toc-text">@AutoWired</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Qualifier"><span class="toc-number">12.</span> <span class="toc-text">@Qualifier</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Resource-name-%E2%80%9Dname%E2%80%9D-type-%E2%80%9Dtype%E2%80%9D"><span class="toc-number">13.</span> <span class="toc-text">@Resource(name&#x3D;”name”,type&#x3D;”type”)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RequestMapping"><span class="toc-number">14.</span> <span class="toc-text">@RequestMapping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PathVariable"><span class="toc-number">15.</span> <span class="toc-text">@PathVariable</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RequestBody"><span class="toc-number">16.</span> <span class="toc-text">@RequestBody</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GetMapping"><span class="toc-number">17.</span> <span class="toc-text">@GetMapping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PostMapping"><span class="toc-number">18.</span> <span class="toc-text">@PostMapping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PutMapping"><span class="toc-number">19.</span> <span class="toc-text">@PutMapping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DeleteMapping"><span class="toc-number">20.</span> <span class="toc-text">@DeleteMapping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PatchMapping"><span class="toc-number">21.</span> <span class="toc-text">@PatchMapping</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ControllerAdvice"><span class="toc-number">22.</span> <span class="toc-text">@ControllerAdvice</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ControllerAdvice-%E9%85%8D%E5%90%88-ExceptionHandler-%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">22.1.</span> <span class="toc-text">@ControllerAdvice 配合 @ExceptionHandler 实现全局异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ControllerAdvice-%E9%85%8D%E5%90%88-ModelAttribute-%E9%A2%84%E8%AE%BE%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE"><span class="toc-number">22.2.</span> <span class="toc-text">@ControllerAdvice 配合 @ModelAttribute 预设全局数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">22.2.1.</span> <span class="toc-text">请求参数预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%A4%84%E7%90%86"><span class="toc-number">22.2.2.</span> <span class="toc-text">参数处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ExceptionHandler"><span class="toc-number">23.</span> <span class="toc-text">@ExceptionHandler</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ResponseStatus"><span class="toc-number">24.</span> <span class="toc-text">@ResponseStatus</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">25.</span> <span class="toc-text">@ModelAttribute</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DependsOn"><span class="toc-number">26.</span> <span class="toc-text">@DependsOn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bean-1"><span class="toc-number">27.</span> <span class="toc-text">@Bean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scope"><span class="toc-number">28.</span> <span class="toc-text">@Scope</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Autowired"><span class="toc-number">29.</span> <span class="toc-text">@Autowired</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E4%BA%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">29.1.</span> <span class="toc-text">作用于构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E4%BA%8Esetter%E6%96%B9%E6%B3%95"><span class="toc-number">29.2.</span> <span class="toc-text">作用于setter方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E4%BA%8E%E5%AD%97%E6%AE%B5"><span class="toc-number">29.3.</span> <span class="toc-text">作用于字段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Primary"><span class="toc-number">30.</span> <span class="toc-text">@Primary</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PostConstruct%E4%B8%8E-PreDestroy"><span class="toc-number">31.</span> <span class="toc-text">@PostConstruct与@PreDestroy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Qualifier-1"><span class="toc-number">32.</span> <span class="toc-text">@Qualifier</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConditionalOnBean%E4%B8%8E-ConditionalOnMissingBean"><span class="toc-number">33.</span> <span class="toc-text">@ConditionalOnBean与@ConditionalOnMissingBean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConditionalOnProperty"><span class="toc-number">34.</span> <span class="toc-text">@ConditionalOnProperty</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConditionalOnResource"><span class="toc-number">35.</span> <span class="toc-text">@ConditionalOnResource</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConditionalOnWebApplication%E4%B8%8E-ConditionalOnNotWebApplication"><span class="toc-number">36.</span> <span class="toc-text">@ConditionalOnWebApplication与@ConditionalOnNotWebApplication</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ConditionalExpression"><span class="toc-number">37.</span> <span class="toc-text">@ConditionalExpression</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Conditional"><span class="toc-number">38.</span> <span class="toc-text">@Conditional</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/11/29/%E6%B0%B4%E8%AE%BA%E6%96%87/" title="论文模板"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文模板"/></a><div class="content"><a class="title" href="/2022/11/29/%E6%B0%B4%E8%AE%BA%E6%96%87/" title="论文模板">论文模板</a><time datetime="2022-11-29T07:00:00.000Z" title="发表于 2022-11-29 15:00:00">2022-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/29/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="SpringBoot注解"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot注解"/></a><div class="content"><a class="title" href="/2022/11/29/SpringBoot%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" title="SpringBoot注解">SpringBoot注解</a><time datetime="2022-11-29T07:00:00.000Z" title="发表于 2022-11-29 15:00:00">2022-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/29/String%E7%B1%BB/" title="String类"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="String类"/></a><div class="content"><a class="title" href="/2022/11/29/String%E7%B1%BB/" title="String类">String类</a><time datetime="2022-11-29T07:00:00.000Z" title="发表于 2022-11-29 15:00:00">2022-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/29/SpringBoot/" title="SpringBoot基础"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot基础"/></a><div class="content"><a class="title" href="/2022/11/29/SpringBoot/" title="SpringBoot基础">SpringBoot基础</a><time datetime="2022-11-29T07:00:00.000Z" title="发表于 2022-11-29 15:00:00">2022-11-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="神经网络"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="神经网络"/></a><div class="content"><a class="title" href="/2022/11/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="神经网络">神经网络</a><time datetime="2022-11-22T07:00:00.000Z" title="发表于 2022-11-22 15:00:00">2022-11-22</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fedpic%2Ff8%2F1d%2F3e%2Ff81d3ebbd84122251e5403241aa4487b.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668339555&amp;t=953420e9c4344774da896a7388445605')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 山不让尘，川不辞盈</div><div class="footer_custom_text">Hi, welcome to My Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"> </div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "https://446773160.github.io/";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
