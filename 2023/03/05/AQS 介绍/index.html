@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JavaAQS介绍 | 山不让尘，川不辞盈</title><meta name="author" content="山不让尘，川不辞盈"><meta name="copyright" content="山不让尘，川不辞盈"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JavaAQS介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaAQS介绍">
+<meta property="og:url" content="http://example.com/2023/03/05/AQS%20%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="山不让尘，川不辞盈">
+<meta property="og:description" content="JavaAQS介绍">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg">
+<meta property="article:published_time" content="2023-03-05T07:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-05T09:55:53.745Z">
+<meta property="article:author" content="山不让尘，川不辞盈">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/03/05/AQS%20%E4%BB%8B%E7%BB%8D/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 山不让尘，川不辞盈","link":"链接: ","source":"来源: 山不让尘，川不辞盈","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaAQS介绍',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-05 17:55:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="山不让尘，川不辞盈" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14071825039%2F641&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668341762&amp;t=8f1764bb17a8a475a7658fd817bf1965" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">山不让尘，川不辞盈</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JavaAQS介绍</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-05T07:00:00.000Z" title="发表于 2023-03-05 15:00:00">2023-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-05T09:55:53.745Z" title="更新于 2023-03-05 17:55:53">2023-03-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JavaAQS介绍"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="AQS-简单介绍"><a href="#AQS-简单介绍" class="headerlink" title="AQS 简单介绍"></a>AQS 简单介绍</h1><p>AQS 的全称为（AbstractQueuedSynchronizer），这个类在 java.util.concurrent.locks 包下面。</p>
+<p><img src="https://gitee.com/liao_446773160/imgs/raw/master/image-20230125164021749.png" alt="image-20230125164021749"></p>
+<p>AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出应用广泛的大量的同步器， 比如我们提到的 ReentrantLock，Semaphore，其他的诸如 ReentrantReadWriteLock，SynchronousQueue，FutureTask(jdk1.7) 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。</p>
+<h2 id="AQS原理概述"><a href="#AQS原理概述" class="headerlink" title="AQS原理概述"></a>AQS原理概述</h2><p>AQS 核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒 时锁分配的机制，这个机制 AQS 是用 CLH 队列锁实现的，即将暂时获取不到锁的线程加入到队列中。</p>
+<p><img src="https://pic3.zhimg.com/v2-fc460a17f0a47887f643f91dd5b892f6_r.jpg" alt="img"></p>
+<p>看个 AQS (AbstractQueuedSynchronizer)原理图：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-dca2f36e89cdbbe56b896a107c66cd8c_1440w.webp" alt="img"></p>
+<p>AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。</p>
+<p>AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。</p>
+<p>有关CAS同步机制请查看<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32998153/article/details/79529704">CAS机制</a></p>
+<p><img src="https://pic4.zhimg.com/v2-9aec0785674dfd366e73bd84779221df_r.jpg" alt="img"></p>
+<p>状态信息通过 protected 类型的getState ， setState ， compareAndSetState 进行操作</p>
+<p><img src="https://pic4.zhimg.com/80/v2-84d86e45fb3098e566260111144cee8b_1440w.webp" alt="img"></p>
+<h1 id="AQS对资源的共享"><a href="#AQS对资源的共享" class="headerlink" title="AQS对资源的共享"></a>AQS对资源的共享</h1><p>AQS定义两种对两种资源共享方式</p>
+<h2 id="Exclusive-独占"><a href="#Exclusive-独占" class="headerlink" title="Exclusive(独占)"></a>Exclusive(独占)</h2><p>只有一个线程能执行，如 ReentrantLock。又可分为公平锁和非公平锁,ReentrantLock 同时支持两种锁,下面以 ReentrantLock 对这两种锁的定义做介绍：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-fb7f171d1180ca26512dc20457fe0402_1440w.webp" alt="img"></p>
+<p>下面来看 ReentrantLock 中相关的源代码：</p>
+<p>ReentrantLock 默认采用非公平锁，因为考虑获得更好的性能，通过 boolean 来决定是否用公平锁（传入 true 用公平锁）。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-3cc16d47f156ce3855b73a614d7fea99_1440w.webp" alt="img"></p>
+<p>ReentrantLock 中公平锁的 lock 方法</p>
+<p><img src="https://gitee.com/liao_446773160/imgs/raw/master/image-20230125165931268.png" alt="image-20230125165931268"></p>
+<p>非公平锁的 lock 方法：</p>
+<p><img src="https://gitee.com/liao_446773160/imgs/raw/master/image-20230125165916228.png" alt="image-20230125165916228"></p>
+<p>总结：公平锁和非公平锁只有两处不同：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-cec67b8c4edad24b1aaa7cbde8531dee_1440w.webp" alt="img"></p>
+<p>公平锁和非公平锁就这两点区别，如果这两次 CAS 都不成功，那么后面非公平锁和公平锁是一样的， 都要进入到阻塞队列等待唤醒。</p>
+<p>相对来说，非公平锁会有更好的性能，因为它的吞吐量比较大。当然，非公平锁让获取锁的时间变得更加不确定，可能会导致在阻塞队列中的线程长期处于饥饿状态</p>
+<h2 id="Share-共享"><a href="#Share-共享" class="headerlink" title="Share(共享)"></a>Share(共享)</h2><p><img src="https://pic3.zhimg.com/80/v2-bc930b5ebb9f45117ff3fc8e5bcfb9a2_1440w.webp" alt="img"></p>
+<h1 id="AQS-底层使用了模板方法模式"><a href="#AQS-底层使用了模板方法模式" class="headerlink" title="AQS 底层使用了模板方法模式"></a>AQS 底层使用了模板方法模式</h1><p><img src="https://pic4.zhimg.com/80/v2-6fce218a950175d5c6256cb57b07e83b_1440w.webp" alt="img"></p>
+<p>AQS 使用了模板方法模式，自定义同步器时需要重写下面几个 AQS 提供的模板方法：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-a780ec5cc977d48bece3e397fce2e478_1440w.webp" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-aa5c98c9162bdcee0d3b6b26eef980a6_1440w.webp" alt="img"></p>
+<h1 id="AQS同步方式"><a href="#AQS同步方式" class="headerlink" title="AQS同步方式"></a>AQS同步方式</h1><h2 id="Semaphore-信号量-允许多个线程同时访问"><a href="#Semaphore-信号量-允许多个线程同时访问" class="headerlink" title="Semaphore(信号量)-允许多个线程同时访问"></a>Semaphore(信号量)-允许多个线程同时访问</h2><p>synchronized 和 ReentrantLock 都是一次只允许一个线程访问某个资源，Semaphore(信号量)可以指定多个线程同时访问某个资源。</p>
+<img src="https://pic4.zhimg.com/80/v2-fbef206767420058d453b6ae09c9539b_1440w.webp" alt="img" style="zoom:150%;" />
+
+<img src="https://pic2.zhimg.com/80/v2-e36728ba0b97e07b65d7cc2f67147bd1_1440w.webp" alt="img" style="zoom:150%;" />
+
+<p>执行 acquire 方法阻塞，直到有一个许可证可以获得然后拿走一个许可证；每个 rerelease方法增加一个许可证，这可能会释放一个阻塞的 acquire 方法。然而，其实并没有实际的许可证这个对象，Semaphore 只是维持了一个可获得许可证的数量。 Semaphore 经常用于限制获取某种资源的线程数量。</p>
+<p>当然一次也可以一次拿取和释放多个许可，不过一般没有必要这样做：</p>
+<img src="https://pic3.zhimg.com/80/v2-ecabe7a527a05a41bfa61786c0e049ae_1440w.webp" alt="img" style="zoom:150%;" />
+
+<p>除了 acquire 方法之外，另一个比较常用的与之对应的方法是tryAcquire 方法，该方法如果获取不到许可就立即返回 false。</p>
+<p>Semaphore 有两种模式，公平模式和非公平模式。</p>
+<p><strong>公平模式：</strong> 调用 acquire 的顺序就是获取许可证的顺序，遵循 FIFO；</p>
+<p><strong>非公平模式：</strong> 抢占式的。</p>
+<p>Semaphore 对应的两个构造方法如下：</p>
+<img src="https://pic1.zhimg.com/80/v2-1abe1261ed6b9d28404fd013431ceb10_1440w.webp" alt="img" style="zoom:150%;" />
+
+<p><strong>这两个构造方法，都必须提供许可的数量，第二个构造方法可以指定是公平模式还是非公平模式，默认非公平模式。</strong></p>
+<p><strong>补充</strong>：Semaphore与CountDownLatch一样，也是共享锁的一种实现。它默认构造AQS的state为permits。当执行任务的线程数量超出permits,那么多余的线程将会被放入阻塞队列Park,并自旋判断state是否大于0。只有当state大于0的时候，阻塞的线程才能继续执行,此时先前执行任务的线程继续执 行release方法，release方法使得state的变量会加1，那么自旋的线程便会判断成功。如此，每次只有最多不超过permits数量的线程能自旋成功，便限制了执行任务线程的数量。</p>
+<h2 id="CountDownLatch-（倒计时器）"><a href="#CountDownLatch-（倒计时器）" class="headerlink" title="CountDownLatch （倒计时器）"></a>CountDownLatch （倒计时器）</h2><img src="https://pic3.zhimg.com/80/v2-6b26e37874805884746e3cf7ccd2084a_1440w.webp" alt="img" style="zoom:150%;" />
+
+<p>缺点：CountDownLatch 是一次性的，计数器的值只能在构造方法中初始化一次，之后没有任何机制再次对其设置值，当 CountDownLatch 使用完毕后，它不能再次被使用。</p>
+<p>CountDownLatch 的两种典型用法</p>
+<img src="https://pic1.zhimg.com/80/v2-97a992a1be03b9b6ff5197a6c2d33dd0_1440w.webp" alt="img" style="zoom:150%;" />
+
+<h2 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier(循环栅栏)"></a>CyclicBarrier(循环栅栏)</h2><p>CyclicBarrier 和 CountDownLatch 非常类似，它也可以实现线程间的技术等待，但是它的功能比CountDownLatch 更加复杂和强大。主要应用场景和 CountDownLatch 类似。</p>
+<p>CountDownLatch的实现是基于AQS的，而CycliBarrier是基于 ReentrantLock(ReentrantLock也属于AQS同步器)和 Condition 的.</p>
+<p>CyclicBarrier 的字面意思是可循环使用（Cyclic）的屏障（Barrier）。它要做的事情是，让一组线程到达一个屏障（也可以叫同步点）时被阻塞，直到最后一个线程到达屏障时，屏障才会开门，所有被屏障 拦截的线程才会继续干活。CyclicBarrier 默认的构造方法是 CyclicBarrier(int parties) ，其参数表示屏障拦截的线程数量，每个线程调用await 方法告诉 CyclicBarrier 我已经到达了屏障，然后当前线程被阻塞。</p>
+<p>再来看一下它的构造函数：</p>
+<img src="https://pic4.zhimg.com/80/v2-75940d63e06796e5378799617ba5dd9b_1440w.webp" alt="img" style="zoom:150%;" />
+
+<p>其中，parties 就代表了有拦截的线程的数量，当拦截的线程数量达到这个值的时候就打开栅栏，让所有线程通过。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">山不让尘，川不辞盈</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/03/05/AQS%20%E4%BB%8B%E7%BB%8D/">http://example.com/2023/03/05/AQS%20%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">山不让尘，川不辞盈</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/03/05/%E5%81%8F%E5%90%91%E9%94%81%E3%80%81%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E8%87%AA%E6%97%8B%E9%94%81%E3%80%81%E8%87%AA%E9%80%82%E5%BA%94%E8%87%AA%E6%97%8B%E9%94%81/"><img class="next-cover" src="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java锁机制</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzQzNS8zMzg5OQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14071825039%2F641&amp;refer=http%3A%2F%2Finews.gtimg.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1668341762&amp;t=8f1764bb17a8a475a7658fd817bf1965" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">山不让尘，川不辞盈</div><div class="author-info__description">归途也还可爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/446773160"><i class="fab fa-github"></i><span>关注我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/446773160" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="/446773160@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43762551?type=blog" target="_blank" title="CSDN"><i class="fa-solid fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到山不让尘,川不辞盈的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AQS-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">AQS 简单介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AQS%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">AQS原理概述</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AQS%E5%AF%B9%E8%B5%84%E6%BA%90%E7%9A%84%E5%85%B1%E4%BA%AB"><span class="toc-number">2.</span> <span class="toc-text">AQS对资源的共享</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Exclusive-%E7%8B%AC%E5%8D%A0"><span class="toc-number">2.1.</span> <span class="toc-text">Exclusive(独占)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Share-%E5%85%B1%E4%BA%AB"><span class="toc-number">2.2.</span> <span class="toc-text">Share(共享)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AQS-%E5%BA%95%E5%B1%82%E4%BD%BF%E7%94%A8%E4%BA%86%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">AQS 底层使用了模板方法模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AQS%E5%90%8C%E6%AD%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">AQS同步方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Semaphore-%E4%BF%A1%E5%8F%B7%E9%87%8F-%E5%85%81%E8%AE%B8%E5%A4%9A%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%97%B6%E8%AE%BF%E9%97%AE"><span class="toc-number">4.1.</span> <span class="toc-text">Semaphore(信号量)-允许多个线程同时访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CountDownLatch-%EF%BC%88%E5%80%92%E8%AE%A1%E6%97%B6%E5%99%A8%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">CountDownLatch （倒计时器）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CyclicBarrier-%E5%BE%AA%E7%8E%AF%E6%A0%85%E6%A0%8F"><span class="toc-number">4.3.</span> <span class="toc-text">CyclicBarrier(循环栅栏)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/AQS%20%E4%BB%8B%E7%BB%8D/" title="JavaAQS介绍"><img src="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaAQS介绍"/></a><div class="content"><a class="title" href="/2023/03/05/AQS%20%E4%BB%8B%E7%BB%8D/" title="JavaAQS介绍">JavaAQS介绍</a><time datetime="2023-03-05T07:00:00.000Z" title="发表于 2023-03-05 15:00:00">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/%E5%81%8F%E5%90%91%E9%94%81%E3%80%81%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E8%87%AA%E6%97%8B%E9%94%81%E3%80%81%E8%87%AA%E9%80%82%E5%BA%94%E8%87%AA%E6%97%8B%E9%94%81/" title="Java锁机制"><img src="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java锁机制"/></a><div class="content"><a class="title" href="/2023/03/05/%E5%81%8F%E5%90%91%E9%94%81%E3%80%81%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81%E3%80%81%E8%87%AA%E6%97%8B%E9%94%81%E3%80%81%E8%87%AA%E9%80%82%E5%BA%94%E8%87%AA%E6%97%8B%E9%94%81/" title="Java锁机制">Java锁机制</a><time datetime="2023-03-05T07:00:00.000Z" title="发表于 2023-03-05 15:00:00">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/%E6%90%AD%E5%BB%BASpringBoot%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/" title="SpringBoot"><img src="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot"/></a><div class="content"><a class="title" href="/2023/03/05/%E6%90%AD%E5%BB%BASpringBoot%E5%88%86%E5%B8%83%E5%BC%8F%E9%A1%B9%E7%9B%AE/" title="SpringBoot">SpringBoot</a><time datetime="2023-03-05T07:00:00.000Z" title="发表于 2023-03-05 15:00:00">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/" title="论文总结"><img src="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文总结"/></a><div class="content"><a class="title" href="/2023/03/05/%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E6%8A%80%E5%B7%A7/" title="论文总结">论文总结</a><time datetime="2023-03-05T07:00:00.000Z" title="发表于 2023-03-05 15:00:00">2023-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/03/05/JWT%E8%AF%A6%E8%A7%A3/" title="Java Web Token详解"><img src="https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java Web Token详解"/></a><div class="content"><a class="title" href="/2023/03/05/JWT%E8%AF%A6%E8%A7%A3/" title="Java Web Token详解">Java Web Token详解</a><time datetime="2023-03-05T07:00:00.000Z" title="发表于 2023-03-05 15:00:00">2023-03-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic2.zhimg.com/v2-4d2704ebfd9b58700fbbf3e32200f49b_r.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 山不让尘，川不辞盈</div><div class="footer_custom_text">Hi, welcome to My Blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"> </div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "https://446773160.github.io/";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
